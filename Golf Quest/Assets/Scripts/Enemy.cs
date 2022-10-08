@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -23,7 +22,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     private void Update()
@@ -51,22 +50,9 @@ public class Enemy : MonoBehaviour
     // Determine if enemy can attack
     private bool CanAttack()
     {
-        if (_attackReady && ((_attacksElapsed < maxTurnAttacks) || maxTurnAttacks < 0) )
-        {
-            if (needsLOS)
-            {
-                Ray playerBallRay = new Ray(transform.position, playerBall.transform.position -transform.position);
-                RaycastHit hitInfo;
-
-                if (!Physics.Raycast(playerBallRay, out hitInfo) || hitInfo.transform != playerBall.transform)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        return false;
+        return _attackReady                                                 // Ready to attack
+            && ((_attacksElapsed < maxTurnAttacks) || maxTurnAttacks < 0)   // Has turn attacks remaining
+            && (!needsLOS || PlayerVisible());                              // Has line of sight on player if needed
     }
 
     // Override this with actual attack behavior, then call super.attack() to handle attack readiness and cooldown
@@ -82,6 +68,25 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);
         _attackReady = true;
+    }
+
+    // Get normalized vector from enemy's position to player's position
+    public Vector3 GetPlayerVector()
+    {
+        return Vector3.Normalize(playerBall.transform.position - transform.position);
+    }
+
+    public bool PlayerVisible()
+    {
+        Ray playerBallRay = new Ray(transform.position, GetPlayerVector());
+        RaycastHit hitInfo;
+
+        if (Physics.Raycast(playerBallRay, out hitInfo) && hitInfo.transform == playerBall.transform)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void OnTriggerEnter(Collider other)
