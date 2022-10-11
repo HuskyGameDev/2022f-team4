@@ -19,16 +19,14 @@ public class TurretEnemy : MonoBehaviour
     {
         if (_enemy.PlayerVisible())
         {
-            //Debug.Log(Vector3.Angle(Vector3.right, _enemy.GetPlayerVector()) - transform.eulerAngles.y);
-
-            //Quaternion lookRotation = Quaternion.LookRotation(_enemy.GetPlayerVector());
-            //transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, degreesPerSecond);
-            //Debug.Log(Vector3.Angle(Vector3.right, _enemy.GetPlayerVector()) - transform.eulerAngles.y);
-            transform.Rotate(Vector3.up, Mathf.Clamp(Vector3.Angle(Vector3.right, _enemy.GetPlayerVector()) - transform.eulerAngles.y, -1 * degreesPerSecond * Time.deltaTime, degreesPerSecond * Time.deltaTime));
-            //Vector3 newRotate = Vector3.RotateTowards(Rotation Vector3.right, playerBall.transform.position, degreesPerSecond * Time.fixedDeltaTime, 0.0f);
-            //transform.eulerAngles = Vector3.MoveTowards(transform.rotation.eulerAngles, Vector3.down * Vector3.Angle(Vector3.right, playerBall.transform.position - transform.position), degreesPerSecond * Time.deltaTime);
-            //transform.Rotate(Vector3.down * Mathf.Clamp(Vector3.Angle(Vector3.right, _enemy.GetPlayerVector()) - transform.eulerAngles.y, -1 * degreesPerSecond, degreesPerSecond));
-            //Debug.Log(Vector3.RotateTowards(transform.rotation.eulerAngles, playerBall.transform.position - transform.position, RaidansPerSecond * Time.deltaTime, 100.0f));
+            if (transform.eulerAngles.y < 0)
+            {
+                transform.eulerAngles.Set(0, transform.eulerAngles.y + 360, 0);
+            }
+            Vector3 lookVector = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0) * Vector3.right;
+            float angleToPlayer = Vector3.SignedAngle(lookVector, _enemy.GetPlayerVector(), Vector3.up);
+            Debug.Log(angleToPlayer);
+            transform.Rotate(Vector3.up * Mathf.Clamp(angleToPlayer, -1 * degreesPerSecond * Time.deltaTime, degreesPerSecond * Time.deltaTime));
         }
     }
 }
