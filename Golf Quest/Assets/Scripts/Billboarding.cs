@@ -4,26 +4,25 @@ using UnityEngine;
 
 public class Billboarding : MonoBehaviour
 {
+    
+    private BallMovement ball;
 
-    private Camera bilCam;
-    private BallMovement mov;
+    private float angle;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        bilCam = Camera.main;
-        mov = this.GetComponentInParent<BallMovement>();
+    void Start() {
+
+        ball = this.GetComponentInParent<BallMovement>();
     }
 
-    void LateUpdate()
-    {
-        transform.LookAt(bilCam.transform);
-    }
-    
-    void Update(){
-        Vector3 dir = mov.getDirection();
-        float angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(transform.rotation.x,angle,transform.rotation.z);
+    void Update() {
 
+        if(ball.isMoving() || ball.isDragging()) {
+        
+            angle = Mathf.Atan2(ball.getDirection().x, ball.getDirection().z) * Mathf.Rad2Deg;
+        }
+
+        transform.forward = Camera.main.transform.forward;
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, angle, transform.rotation.eulerAngles.z);
     }
 }

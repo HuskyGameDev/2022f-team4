@@ -31,9 +31,8 @@ public class BallPath : MonoBehaviour {
 
     void Update() {
 
-        if(ballMovement.isMoving() || ballMovement.isDragging()) {
+        if(ballMovement.isDragging()) {
 
-            line.enabled = true;
             path.Clear();
 
             raycastPath(ballObj.transform.position, ballMovement.getDirection(), lineMultiplier * ballMovement.getMagnitude());
@@ -43,8 +42,12 @@ public class BallPath : MonoBehaviour {
             for (int i = 0; i < path.Count; i++)
                 line.SetPosition(i, path[i]);
 
-        } else {
+            line.enabled = true;
+        }
 
+        if(ballMovement.isMoving()) {
+
+            path.Clear();
             line.enabled = false;
         }
     }
