@@ -155,8 +155,8 @@ GameObject:
   - component: {fileID: 6219699358851914158}
   - component: {fileID: 6219699358851914145}
   m_Layer: 0
-  m_Name: Random Ball
-  m_TagString: Untagged
+  m_Name: Player Ball
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,7 +168,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6219699358851914159}
-  m_LocalRotation: {x: 0.69704014, y: 0.2024058, z: 0.055095732, w: 0.6856613}
+  m_LocalRotation: {x: 0.69703966, y: 0.20240481, z: 0.05510035, w: 0.68566173}
   m_LocalPosition: {x: -4.7798634, y: 0.2, z: -1.5515115}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
@@ -176,7 +176,7 @@ Transform:
   - {fileID: 7192030439848058584}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 68.997, y: 98.611, z: 86.449}
 --- !u!33 &6219699358851914147
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -250,7 +250,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 0.05
   m_Drag: 1
-  m_AngularDrag: 6
+  m_AngularDrag: 4
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -268,5 +268,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99057a8dd7d2e704596a594c43e59555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnitudeMax: 20
-  magnitudeScalar: 4
+  magnitudeMax: 2
+  magnitudeScalar: 8

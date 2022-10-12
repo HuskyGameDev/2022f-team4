@@ -11,6 +11,7 @@ public class BallMovement : MonoBehaviour
     private Vector3 dragStartPos;   // Stores the position of where the mouse drag was started.
     private Vector3 dragCurrPos;    // Stores the position of the mouse during the drag.
     private bool dragging;          // Stores whether or not the player is currently dragging.
+    private bool moving;
 
     [Header("Launch Properties")]
     [SerializeField]
@@ -39,13 +40,18 @@ public class BallMovement : MonoBehaviour
             // Draw pull back band
             pullLine.SetPositions(new Vector3[] {dragStartPos, dragCurrPos});
         }
+
+        if(rigidBody.velocity.sqrMagnitude > 0.001f)
+            moving = true;
+        else
+            moving = false;
     }
 
     private void OnMouseDown()
     {
         //Debug.Log("Mouse Pressed");
 
-        if (rigidBody.velocity.sqrMagnitude > 0.001f)                                                          // Only allow dragging if ball has stopped moving
+        if (moving)                                                          // Only allow dragging if ball has stopped moving
             return;
 
         dragStartPos = screenToWorld(Camera.main.WorldToScreenPoint(this.transform.position));                 // Store the start drag position
@@ -74,5 +80,23 @@ public class BallMovement : MonoBehaviour
     {   
         vec.z = Camera.main.nearClipPlane;
         return Camera.main.ScreenToWorldPoint(vec);
+    }
+
+    public bool isMoving() { return moving; }
+
+    public bool isDragging() { return dragging; }
+
+    public Vector3 getDirection() {
+
+        if(moving)
+            return rigidBody.velocity.normalized;
+        else 
+            return (dragStartPos - dragCurrPos).normalized;
+    }
+
+    public float getMagnitude() {
+
+        Vector3 dir = dragCurrPos - dragStartPos;
+        return Mathf.Min(dir.magnitude * magnitudeScalar, magnitudeMax);
     }
 }
