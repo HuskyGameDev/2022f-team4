@@ -45,6 +45,7 @@ public class BallMovement : MonoBehaviour
             moving = true;
         else
             moving = false;
+
     }
 
     private void OnMouseDown()
