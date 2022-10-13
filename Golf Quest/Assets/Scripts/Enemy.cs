@@ -14,15 +14,14 @@ public class Enemy : MonoBehaviour
     public int maxTurnAttacks;      // Maximum attacks which can occur within a turn, including start/end attacks. -1 for infinite
 
     // Reference to player ball
-    public BallMovement playerBall;
-
+    private GameObject _playerBall;
     private bool _attackReady;      // True if cooldown has passed since last attack
     private int _attacksElapsed;    // Number of attacks which have occured this turn
 
     // Start is called before the first frame update
     void Start()
     {
-
+        _playerBall = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
@@ -73,7 +72,7 @@ public class Enemy : MonoBehaviour
     // Get normalized vector from enemy's position to player's position
     public Vector3 GetPlayerVector()
     {
-        return Vector3.Normalize(playerBall.transform.position - transform.position);
+        return Vector3.Normalize(_playerBall.transform.position - transform.position);
     }
 
     public bool PlayerVisible()
@@ -81,7 +80,7 @@ public class Enemy : MonoBehaviour
         Ray playerBallRay = new Ray(transform.position, GetPlayerVector());
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(playerBallRay, out hitInfo) && hitInfo.transform == playerBall.transform)
+        if (Physics.Raycast(playerBallRay, out hitInfo) && hitInfo.transform == _playerBall.transform)
         {
             return true;
         }
