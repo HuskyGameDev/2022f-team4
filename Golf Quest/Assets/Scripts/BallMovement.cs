@@ -41,7 +41,7 @@ public class BallMovement : MonoBehaviour
             pullLine.SetPositions(new Vector3[] {dragStartPos, dragCurrPos});
         }
 
-        if(rigidBody.velocity.sqrMagnitude > 0.001f)
+        if(rigidBody.velocity.sqrMagnitude > 0.0001f)
             moving = true;
         else
             moving = false;
