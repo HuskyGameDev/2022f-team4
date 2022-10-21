@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
     // Times at which enemy can attack. Not mutually exclusive. Start/end times are subjust to needsLOS, and will start cooldown if attack occurs
     public bool turnStartAttack;    // Attempt to attack as soon as ball it hit
     public bool turnEndAttack;      // Attempt to attack as soon as ball comes to a stop
@@ -18,10 +19,14 @@ public class Enemy : MonoBehaviour
     private bool _attackReady;      // True if cooldown has passed since last attack
     private int _attacksElapsed;    // Number of attacks which have occured this turn
 
+    // Reference to ExitHoleManager
+    private ExitHoleManager exitHole;
+
     // Start is called before the first frame update
     void Start()
     {
         _playerBall = GameObject.FindGameObjectWithTag("Player");
+        exitHole = GameObject.Find("ExitHole").GetComponent<ExitHoleManager>();
     }
 
     private void Update()

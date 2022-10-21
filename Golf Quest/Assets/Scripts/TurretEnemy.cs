@@ -25,7 +25,7 @@ public class TurretEnemy : MonoBehaviour
             }
             Vector3 lookVector = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0) * Vector3.right;
             float angleToPlayer = Vector3.SignedAngle(lookVector, _enemy.GetPlayerVector(), Vector3.up);
-            Debug.Log(angleToPlayer);
+            //Debug.Log(angleToPlayer);
             transform.Rotate(Vector3.up * Mathf.Clamp(angleToPlayer, -1 * degreesPerSecond * Time.deltaTime, degreesPerSecond * Time.deltaTime));
         }
     }
