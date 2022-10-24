@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretEnemy : MonoBehaviour
+public class TurretEnemy : MonoBehaviour, EnemyType
 {
     public float degreesPerSecond;
 
@@ -12,6 +12,7 @@ public class TurretEnemy : MonoBehaviour
     void Start()
     {
         _enemy = GetComponent<Enemy>();
+        _enemy.setEnemyType(this);
     }
 
     // Update is called once per frame
@@ -28,5 +29,11 @@ public class TurretEnemy : MonoBehaviour
             //Debug.Log(angleToPlayer);
             transform.Rotate(Vector3.up * Mathf.Clamp(angleToPlayer, -1 * degreesPerSecond * Time.deltaTime, degreesPerSecond * Time.deltaTime));
         }
+    }
+
+    public IEnumerator Attack()
+    {
+        Debug.Log("Turret Attack!");
+        yield return new WaitForSeconds(0.1f);
     }
 }

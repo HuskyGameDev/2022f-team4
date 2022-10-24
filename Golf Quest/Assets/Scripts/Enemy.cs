@@ -22,11 +22,25 @@ public class Enemy : MonoBehaviour
     // Reference to ExitHoleManager
     private ExitHoleManager exitHole;
 
+    // Enemy type for attack coroutine
+    private EnemyType _enemyType;
+
     // Start is called before the first frame update
     void Start()
     {
         _playerBall = GameObject.FindGameObjectWithTag("Player");
         exitHole = GameObject.Find("ExitHole").GetComponent<ExitHoleManager>();
+
+        /*
+        Debug.Log("monobehaviors: " + GetComponents<MonoBehaviour>());
+        foreach (MonoBehaviour m in GetComponents<MonoBehaviour>())
+        {
+            if (m.GetType() == typeof(EnemyType))
+            {
+                _enemyType = (EnemyType)m;
+            }
+        }
+        Debug.Log(_enemyType);*/
     }
 
     private void Update()
@@ -62,8 +76,8 @@ public class Enemy : MonoBehaviour
     // Override this with actual attack behavior, then call super.attack() to handle attack readiness and cooldown
     protected void Attack()
     {
-        Debug.Log("I'm Attacking!");
         _attackReady = false;
+        StartCoroutine(_enemyType.Attack()); 
         _attacksElapsed++;
         StartCoroutine(AttackCooldown());
     }
@@ -96,5 +110,11 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+    }
+
+    public void setEnemyType(EnemyType enemyType)
+    {
+        _enemyType = enemyType;
+        Debug.Log(_enemyType);
     }
 }
