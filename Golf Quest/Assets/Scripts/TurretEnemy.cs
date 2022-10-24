@@ -5,6 +5,7 @@ using UnityEngine;
 public class TurretEnemy : MonoBehaviour, EnemyType
 {
     public float degreesPerSecond;
+    public GameObject projectile;
 
     private Enemy _enemy;
 
@@ -34,6 +35,10 @@ public class TurretEnemy : MonoBehaviour, EnemyType
     public IEnumerator Attack()
     {
         Debug.Log("Turret Attack!");
+
+        GameObject Projectile = Instantiate(projectile, transform, false);
+        Projectile.transform.SetParent(null);
+
         yield return new WaitForSeconds(0.1f);
     }
 }

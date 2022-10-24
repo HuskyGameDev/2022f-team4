@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   degreesPerSecond: 30
+  projectile: {fileID: 352331871801072938, guid: 053bd163f8d8449409fc246aaeab642b, type: 3}
 --- !u!1 &6376811016437484101
 GameObject:
   m_ObjectHideFlags: 0
