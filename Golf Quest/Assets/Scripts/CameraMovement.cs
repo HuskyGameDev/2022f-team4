@@ -23,7 +23,7 @@ public class CameraMovement : MonoBehaviour
 
     void Update() {
 
-        CameraZoom();
+        //CameraZoom();
         // Need to fix LineRenderers when zooming
     }
 

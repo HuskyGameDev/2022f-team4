@@ -8,19 +8,16 @@ public class BallMovement : MonoBehaviour
     private Rigidbody rigidBody;
     private LineRenderer pullLine;
 
-    private Plane plane;
-
     private Vector3 dragStartPos;   // Stores the position of where the mouse drag was started.
     private Vector3 dragCurrPos;    // Stores the position of the mouse during the drag.
     private bool dragging;          // Stores whether or not the player is currently dragging.
     private bool moving;
-    private bool launching;
 
     [Header("Launch Properties")]
     [SerializeField]
-    private float magnitudeMax = 20.0f, magnitudeScalar = 100.0f, movingThreshold = 0.1f;
+    private float magnitudeMax = 20.0f;
     [SerializeField]
-    private SpriteRenderer readySprite; // Displays when they player is ready to be charged and launched again.
+    private float magnitudeScalar = 100.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,34 +25,27 @@ public class BallMovement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         pullLine = GetComponentInChildren<LineRenderer>();
         pullLine.enabled = false; 
-        readySprite.enabled = false;
     }
 
     // Update is called once per frame
-    void Update() {
-
-        plane = new Plane(Vector3.up, -this.transform.position.y);
+    void Update()
+    {
 
         if (dragging) {
             
-            float planeEnter;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            plane.Raycast(ray, out planeEnter);    // Update the current mouse position while dragging
-            dragCurrPos = ray.GetPoint(planeEnter);
+            dragCurrPos = screenToWorld(Input.mousePosition);    // Update the current mouse position while dragging
+
+            // TODO: Draw trajectory of ball
 
             // Draw pull back band
             pullLine.SetPositions(new Vector3[] {dragStartPos, dragCurrPos});
         }
 
-        if(rigidBody.velocity.sqrMagnitude > movingThreshold) {
+        if(rigidBody.velocity.sqrMagnitude > 0.0001f)
             moving = true;
-            launching = false;
-        } else {
+        else
             moving = false;
-            rigidBody.velocity = Vector3.zero;
-        }
 
-        readySprite.enabled = !moving;
     }
 
     private void OnMouseDown()
@@ -65,7 +55,7 @@ public class BallMovement : MonoBehaviour
         if (moving)                                                          // Only allow dragging if ball has stopped moving
             return;
 
-        dragStartPos = this.transform.position;                 // Store the start drag position
+        dragStartPos = screenToWorld(Camera.main.WorldToScreenPoint(this.transform.position));                 // Store the start drag position
         dragging = true;                                                                                       // Started dragging
         pullLine.enabled = true;
     }
@@ -85,8 +75,6 @@ public class BallMovement : MonoBehaviour
         dragStartPos = Vector3.zero;                                                            // Reset positions
         dragCurrPos = Vector3.zero;
         pullLine.enabled = false;
-        launching = true;
-        Time.timeScale = 1.0f;
     }
 
     private Vector3 screenToWorld(Vector3 vec) 
@@ -98,8 +86,6 @@ public class BallMovement : MonoBehaviour
     public bool isMoving() { return moving; }
 
     public bool isDragging() { return dragging; }
-
-    public bool isLaunching() { return launching; }
 
     public Vector3 getDirection() {
 
@@ -114,6 +100,4 @@ public class BallMovement : MonoBehaviour
         Vector3 dir = dragCurrPos - dragStartPos;
         return Mathf.Min(dir.magnitude * magnitudeScalar, magnitudeMax);
     }
-
-    public float getMovingThreshold() { return movingThreshold; }
 }
