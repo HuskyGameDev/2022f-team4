@@ -14,14 +14,14 @@ public class BallPath : MonoBehaviour {
     [SerializeField]
     private float lineMultiplier;
     [SerializeField]
-    private LayerMask wallMask;
+    private LayerMask pathMask;
 
     void Start() {
 
         ballObj = GameObject.Find("Player Ball");
         ballRb = ballObj.GetComponent<Rigidbody>();
         ballMovement = ballObj.GetComponent<BallMovement>();
-        ballRadius = ballObj.transform.localScale.x * ballObj.GetComponent<SphereCollider>().radius;
+        ballRadius = ballObj.GetComponent<SphereCollider>().radius;
         
         line = GetComponent<LineRenderer>();
         line.enabled = false;
@@ -35,7 +35,7 @@ public class BallPath : MonoBehaviour {
 
             path.Clear();
 
-            raycastPath(ballObj.transform.position + new Vector3(0.0f, 0.1f, 0.0f), ballMovement.getDirection(), lineMultiplier * ballMovement.getMagnitude());
+            raycastPath(ballObj.transform.position, ballMovement.getDirection(), lineMultiplier * ballMovement.getMagnitude());
 
             line.positionCount = path.Count;
 
@@ -55,14 +55,13 @@ public class BallPath : MonoBehaviour {
     private void raycastPath(Vector3 origin, Vector3 direction, float distance) {
 
             path.Add(origin);
-            direction.y = 0.0f;
 
+            Ray ray = new Ray(origin, direction);
             RaycastHit hit;
-            Ray ray = new Ray(origin, direction * distance);
-
-            if(Physics.SphereCast(ray, ballRadius, out hit, distance, wallMask) && hit.distance < distance) {
-
-                Vector3 reflectedDirection = Vector3.Reflect(direction, hit.normal);
+            
+            if(Physics.Raycast(ray, out hit, distance, pathMask) && hit.distance < distance) {
+                
+                Vector3 reflectedDirection = Vector3.Reflect(direction, hit.normal);    
                 raycastPath(hit.point, reflectedDirection, distance - hit.distance);
 
             } else {
