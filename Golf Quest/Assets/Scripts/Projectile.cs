@@ -27,11 +27,8 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.gameObject.tag);
-        if (!other.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("Hit");
-            Destroy(this.gameObject);
-        }
+        Debug.Log("Hit");
+        Destroy(gameObject);
         
     }
 }

@@ -37,6 +37,7 @@ public class TurretEnemy : MonoBehaviour, EnemyType
         Debug.Log("Turret Attack!");
 
         GameObject Projectile = Instantiate(projectile, transform, false);
+        Projectile.transform.Translate(Vector3.right * 0.6f);
         Projectile.transform.SetParent(null);
 
         yield return new WaitForSeconds(0.1f);
