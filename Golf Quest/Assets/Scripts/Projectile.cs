@@ -23,12 +23,4 @@ public class Projectile : MonoBehaviour
         if (Time.fixedTime - startLifetime > lifetime) { }
             //Destroy(this.gameObject);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.gameObject.tag);
-        Debug.Log("Hit");
-        Destroy(gameObject);
-        
-    }
 }

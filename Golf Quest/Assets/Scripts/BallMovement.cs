@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallMovement : MonoBehaviour
-{
+[RequireComponent(typeof(BallStats), typeof(Rigidbody))]
+public class BallMovement : MonoBehaviour {
 
     private Rigidbody rigidBody;
     private LineRenderer pullLine;
+    private BallStats ballStats;
 
     private Plane plane;
 
@@ -27,6 +28,7 @@ public class BallMovement : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         pullLine = GetComponentInChildren<LineRenderer>();
+        ballStats = GetComponent<BallStats>();
         pullLine.enabled = false; 
         readySprite.enabled = false;
     }
@@ -52,6 +54,7 @@ public class BallMovement : MonoBehaviour
             launching = false;
         } else {
             moving = false;
+            launching = false;
             rigidBody.velocity = Vector3.zero;
         }
 
@@ -62,16 +65,17 @@ public class BallMovement : MonoBehaviour
     {
         //Debug.Log("Mouse Pressed");
 
-        if (moving)                                                          // Only allow dragging if ball has stopped moving
+        if (moving)                                                                             // Only allow dragging if ball has stopped moving
             return;
 
-        dragStartPos = this.transform.position;                 // Store the start drag position
-        dragging = true;                                                                                       // Started dragging
+        dragStartPos = this.transform.position;                                                 // Store the start drag position
+        dragging = true;                                                                        // Started dragging
         pullLine.enabled = true;
     }
 
     private void OnMouseUp()
     {
+
         //Debug.Log("Mouse Released");
         Vector3 launchVector = dragCurrPos - dragStartPos;                                      // Calculate the desired launch vector
         float magnitude = Mathf.Min(launchVector.magnitude * magnitudeScalar, magnitudeMax);    // Scale the magnitude and ensure it is capped at a maximum.
@@ -87,6 +91,7 @@ public class BallMovement : MonoBehaviour
         pullLine.enabled = false;
         launching = true;
         Time.timeScale = 1.0f;
+        ballStats.addStroke();
     }
 
     private Vector3 screenToWorld(Vector3 vec) 

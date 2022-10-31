@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6197577093066319683}
   - component: {fileID: 6197577093066319682}
   - component: {fileID: 6197577093066319692}
+  - component: {fileID: 2696820942476933780}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -66,6 +67,22 @@ MonoBehaviour:
   attackCooldown: 1
   needsLOS: 0
   maxTurnAttacks: 1
+--- !u!114 &2696820942476933780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6197577093066319681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10a7cef6315ede4b9711e4415db31a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  dmgOnWallHit: 0
+  dmgOnHit: 0
+  dmgOnDestroy: 0
 --- !u!1 &6197577094102965667
 GameObject:
   m_ObjectHideFlags: 0
