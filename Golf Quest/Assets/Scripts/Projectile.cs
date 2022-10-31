@@ -20,18 +20,18 @@ public class Projectile : MonoBehaviour
     {
         transform.Translate(Vector3.right * Time.deltaTime * Speed);
 
-        if (Time.fixedTime - startLifetime > lifetime)
-            Destroy(this.gameObject);
+        if (Time.fixedTime - startLifetime > lifetime) { }
+            //Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTrigger");
         Debug.Log(other.gameObject.tag);
-        if (other.gameObject.CompareTag("Wall"))
+        if (!other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Hit Wall");
-            Destroy(gameObject);
+            Debug.Log("Hit");
+            Destroy(this.gameObject);
         }
+        
     }
 }
