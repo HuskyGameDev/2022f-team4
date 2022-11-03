@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     // Conditions that determine when attack occurs
     public float attackCooldown;    // Time between attacks in seconds
     public bool needsLOS;           // Player must be in line of sight to attack
+    public bool needsFOV;           // Player must be in field of view
+    public float fov;               // Field of view in angles
     public int maxTurnAttacks;      // Maximum attacks which can occur within a turn, including start/end attacks. -1 for infinite
 
     // Reference to player ball
@@ -73,7 +75,8 @@ public class Enemy : MonoBehaviour
     {
         return _attackReady                                                 // Ready to attack
             && ((_attacksElapsed < maxTurnAttacks) || maxTurnAttacks < 0)   // Has turn attacks remaining
-            && (!needsLOS || PlayerVisible());                              // Has line of sight on player if needed
+            && (!needsLOS || PlayerInLOS())                                 // Has line of sight on player if needed
+            && (!needsFOV || PlayerInFOV());
     }
 
     // Override this with actual attack behavior, then call super.attack() to handle attack readiness and cooldown
@@ -97,7 +100,7 @@ public class Enemy : MonoBehaviour
         return Vector3.Normalize(_playerBall.transform.position - transform.position);
     }
 
-    public bool PlayerVisible()
+    public bool PlayerInLOS()
     {
         Ray playerBallRay = new Ray(transform.position, GetPlayerVector());
         RaycastHit hitInfo;
@@ -108,6 +111,15 @@ public class Enemy : MonoBehaviour
         }
 
         return false;
+    }
+
+    public bool PlayerInFOV()
+    {
+        Vector3 playerVector = GetPlayerVector();
+        Vector3 lookVector = Vector3.Normalize(transform.TransformDirection(Vector3.right));
+
+        //Debug.Log("Player Vector: " + playerVector + " Look Vector: " + lookVector + " Angle: " + angle);
+        return Vector3.Angle(lookVector, playerVector) <= fov / 2;
     }
 
     private void OnTriggerEnter(Collider other)

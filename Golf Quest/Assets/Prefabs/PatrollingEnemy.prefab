@@ -153,6 +153,8 @@ MonoBehaviour:
   anyTimeAttack: 1
   attackCooldown: 1
   needsLOS: 1
+  needsFOV: 1
+  fov: 30
   maxTurnAttacks: -1
 --- !u!114 &5693065132534846187
 MonoBehaviour:
