@@ -228,12 +228,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.2, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -491,6 +491,7 @@ GameObject:
   - component: {fileID: 6219699358851914157}
   - component: {fileID: 6219699358851914158}
   - component: {fileID: 6219699358851914145}
+  - component: {fileID: 6447282347769975651}
   m_Layer: 0
   m_Name: Player Ball
   m_TagString: Player
@@ -587,9 +588,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6219699358851914159}
   serializedVersion: 2
-  m_Mass: 0.05
+  m_Mass: 0.075
   m_Drag: 1
-  m_AngularDrag: 4
+  m_AngularDrag: 12
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -609,5 +610,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magnitudeMax: 2
   magnitudeScalar: 0.5
-  movingThreshold: 0.05
+  movingThreshold: 0.1
   readySprite: {fileID: 1460803018}
+--- !u!114 &6447282347769975651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6219699358851914159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b38da393ecb8f4ea087fcda68997b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLabel: {fileID: 0}
+  strokeLabel: {fileID: 0}
+  healthLabel: {fileID: 0}
+  maxHealth: 5

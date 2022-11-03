@@ -516,6 +516,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &679828735 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4451550842316716280, guid: 79917457e195d844da2ab5b659715141, type: 3}
+  m_PrefabInstance: {fileID: 1508940031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &798047268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -639,6 +650,28 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_PVRTiledBaking: 0
+--- !u!114 &1086494205 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4451550841915025419, guid: 79917457e195d844da2ab5b659715141, type: 3}
+  m_PrefabInstance: {fileID: 1508940031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1150959520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4451550842693038392, guid: 79917457e195d844da2ab5b659715141, type: 3}
+  m_PrefabInstance: {fileID: 1508940031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1251001687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1820,5 +1853,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 6447282347769975651, guid: a27640f4991db8f41971cc67816f978f, type: 3}
+      propertyPath: timeLabel
+      value: 
+      objectReference: {fileID: 1086494205}
+    - target: {fileID: 6447282347769975651, guid: a27640f4991db8f41971cc67816f978f, type: 3}
+      propertyPath: healthLabel
+      value: 
+      objectReference: {fileID: 1150959520}
+    - target: {fileID: 6447282347769975651, guid: a27640f4991db8f41971cc67816f978f, type: 3}
+      propertyPath: strokeLabel
+      value: 
+      objectReference: {fileID: 679828735}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a27640f4991db8f41971cc67816f978f, type: 3}
