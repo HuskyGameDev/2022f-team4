@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -5266962579679201912}
   - component: {fileID: -9035351116851385977}
   - component: {fileID: 7579549730179860129}
+  - component: {fileID: 8889239909974840680}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -146,3 +147,24 @@ MonoBehaviour:
   dmgOnWallHit: 1
   dmgOnHit: 1
   dmgOnDestroy: 1
+  Anim: {fileID: 0}
+--- !u!95 &8889239909974840680
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352331871801072938}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9952e6db8457dbf489748d5a4ec6809d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

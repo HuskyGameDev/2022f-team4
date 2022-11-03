@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(Collider))]
 public class Destructible : MonoBehaviour {
@@ -13,11 +14,12 @@ public class Destructible : MonoBehaviour {
         Dmg On Hit          Stores the damage this object deals the player when it hits this object.
         Dmg On Destroy      Stores the damage this object deals the player when it destroys this object.
     */
+    private Animator anim;
 
     private int currHealth;
 
     void Start() {
-
+        anim = GetComponent<Animator>();
         currHealth = maxHealth;
     }
 
@@ -43,6 +45,7 @@ public class Destructible : MonoBehaviour {
 
             // Play destruction animation
             // Play destruction sound
+            // anim.SetTrigger("Break");                                       //Needs to be fixed; will be used to trigger the breaking / death animation
             Destroy(gameObject);
         }
     }
