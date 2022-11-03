@@ -25,13 +25,13 @@ public class Enemy : MonoBehaviour
     // Enemy type for attack coroutine
     private EnemyType _enemyType;
 
-    // Start is called before the first frame update
-    void Start()
+    /*
+    void Awake()
     {
         _playerBall = GameObject.FindGameObjectWithTag("Player");
         exitHole = GameObject.Find("ExitHole").GetComponent<ExitHoleManager>();
 
-        /*
+        
         Debug.Log("monobehaviors: " + GetComponents<MonoBehaviour>());
         foreach (MonoBehaviour m in GetComponents<MonoBehaviour>())
         {
@@ -40,8 +40,8 @@ public class Enemy : MonoBehaviour
                 _enemyType = (EnemyType)m;
             }
         }
-        Debug.Log(_enemyType);*/
-    }
+        Debug.Log(_enemyType);
+    }*/
 
     private void Update()
     {
@@ -55,6 +55,9 @@ public class Enemy : MonoBehaviour
     // Triggered when GameObject is set to active at start of turn
     private void Awake()
     {
+        _playerBall = GameObject.FindGameObjectWithTag("Player");
+        exitHole = GameObject.Find("ExitHole").GetComponent<ExitHoleManager>();
+
         _attackReady = true;
         _attacksElapsed = 0;
 
