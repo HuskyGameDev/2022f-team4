@@ -21,7 +21,7 @@ public class BallPath : MonoBehaviour {
         ballObj = GameObject.Find("Player Ball");
         ballRb = ballObj.GetComponent<Rigidbody>();
         ballMovement = ballObj.GetComponent<BallMovement>();
-        ballRadius = ballObj.transform.localScale.x * ballObj.GetComponent<SphereCollider>().radius;
+        ballRadius = ballObj.transform.localScale.x * (ballObj.GetComponent<SphereCollider>().radius * 0.99f);
         
         line = GetComponent<LineRenderer>();
         line.enabled = false;
