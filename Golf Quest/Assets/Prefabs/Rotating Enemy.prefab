@@ -151,6 +151,8 @@ MonoBehaviour:
   anyTimeAttack: 1
   attackCooldown: 1
   needsLOS: 1
+  needsFOV: 1
+  fov: 20
   maxTurnAttacks: -1
 --- !u!114 &1511489829470955648
 MonoBehaviour:
@@ -178,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10a7cef6315ede4b9711e4415db31a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 1
   dmgOnWallHit: 0
   dmgOnHit: 0
   dmgOnDestroy: 0

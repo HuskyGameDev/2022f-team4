@@ -19,6 +19,7 @@ public class CameraMovement : MonoBehaviour
     void Start() {
         
         ball = GameObject.Find("Player Ball").transform;
+        this.transform.position =  new Vector3(ball.position.x, this.transform.position.y, ball.position.z);
     }
 
     void Update() {

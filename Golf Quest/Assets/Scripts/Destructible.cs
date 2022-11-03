@@ -25,6 +25,16 @@ public class Destructible : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
 
+        hit(other.gameObject);
+    }
+
+    void OnCollisionEnter(Collision collision) {
+
+        hit(collision.gameObject);
+    }
+
+    private void hit(GameObject other) {
+
         if (other.CompareTag("Player")) {
 
             currHealth = Mathf.Max(0, currHealth - 1);

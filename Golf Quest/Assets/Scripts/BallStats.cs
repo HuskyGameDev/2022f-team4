@@ -23,7 +23,7 @@ public class BallStats : MonoBehaviour {
     void Start() {
 
         currHealth = maxHealth;
-        startTime = Time.unscaledTime;
+        startTime = Time.time;
     }
 
     void Update() {
@@ -71,5 +71,5 @@ public class BallStats : MonoBehaviour {
     public int getMaxHealth() { return maxHealth; }
     public int getCurrHealth() { return currHealth; }    
     public int getStrokeCount() { return strokeCount; }
-    public float getElapsedTime() { return Time.unscaledTime - startTime; }
+    public float getElapsedTime() { return Time.time - startTime; }
 }

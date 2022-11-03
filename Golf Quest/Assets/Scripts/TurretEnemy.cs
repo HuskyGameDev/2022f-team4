@@ -19,7 +19,7 @@ public class TurretEnemy : MonoBehaviour, EnemyType
     // Update is called once per frame
     void Update()
     {
-        if (_enemy.PlayerVisible())
+        if (_enemy.PlayerInLOS())
         {
             if (transform.eulerAngles.y < 0)
             {
