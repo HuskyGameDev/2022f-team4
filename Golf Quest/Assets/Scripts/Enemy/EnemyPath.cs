@@ -30,8 +30,8 @@ public class EnemyPath : MonoBehaviour
         return _pathNodes[(reachedNode.order + 1) % _pathNodes.Length];
     }
 
-    public EnemyPathNode getFirstNode()
+    public EnemyPathNode getNode(int nodeNum)
     {
-        return _pathNodes[0];
+        return _pathNodes[nodeNum];
     }
 }

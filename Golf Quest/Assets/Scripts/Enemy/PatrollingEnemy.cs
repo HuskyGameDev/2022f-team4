@@ -6,19 +6,35 @@ using UnityEngine.AI;
 public class PatrollingEnemy : MonoBehaviour
 {
     public EnemyPath enemyPath;
+    public int startNode;
     public float reachNodeDistance;
     public float nodeWaitTime;
     
     private EnemyPathNode _targetNode;
-    private NavMeshAgent _navMeshAgent; 
+    private NavMeshAgent _navMeshAgent;
+    private TurretEnemy _turretEnemy;
 
     // Start is called before the first frame update
     void Start()
     {
         // Initialize path following
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        setTargetNode(enemyPath.getFirstNode());
-        
+        _turretEnemy = GetComponent<TurretEnemy>();
+        setTargetNode(enemyPath.getNode(startNode));
+
+        // If node wait time = -1, set it to as much time as is needed to face next node
+        // WIP DO NOT USE YET
+        if (nodeWaitTime < 0)
+        {
+            if (_turretEnemy != null)
+            {
+                nodeWaitTime = _turretEnemy.getAngleToTarget() / _turretEnemy.degreesPerSecond;
+            }
+            else
+            {
+                nodeWaitTime = 0;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -39,6 +55,12 @@ public class PatrollingEnemy : MonoBehaviour
     private void setTargetNode(EnemyPathNode targetNode)
     {
         _targetNode = targetNode;
+
+        if (_turretEnemy != null)
+        {
+            _turretEnemy.setAltRotationTarget(_targetNode.gameObject);
+        }
+
         StartCoroutine(WaitAtNode());
     }
 }
