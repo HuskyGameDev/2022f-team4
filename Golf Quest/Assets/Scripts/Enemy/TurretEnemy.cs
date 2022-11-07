@@ -60,7 +60,7 @@ public class TurretEnemy : MonoBehaviour, EnemyType
 
     public IEnumerator Attack()
     {
-        Debug.Log("Turret Attack!");
+        //Debug.Log("Turret Attack!");
 
         GameObject Projectile = Instantiate(projectile, transform, false);
         Projectile.transform.Translate(Vector3.right * 0.6f);

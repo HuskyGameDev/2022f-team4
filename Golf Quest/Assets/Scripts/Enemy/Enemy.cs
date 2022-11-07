@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
     {
         if (anyTimeAttack && CanAttack())
         {
-            Debug.Log("Any Time Attack");
+            //Debug.Log("Any Time Attack");
             Attack();
         }
     }
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
 
         if (turnStartAttack && CanAttack())
         {
-            Debug.Log("Turn Start Attack");
+            //Debug.Log("Turn Start Attack");
             Attack();
         }
     }
@@ -82,6 +82,9 @@ public class Enemy : MonoBehaviour
     // Override this with actual attack behavior, then call super.attack() to handle attack readiness and cooldown
     protected void Attack()
     {
+        if(_enemyType == null)
+        return;
+
         _attackReady = false;
         StartCoroutine(_enemyType.Attack()); 
         _attacksElapsed++;
@@ -122,14 +125,9 @@ public class Enemy : MonoBehaviour
         return Vector3.Angle(lookVector, playerVector) <= fov / 2;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        //Destroy(gameObject);
-    }
-
     public void setEnemyType(EnemyType enemyType)
     {
         _enemyType = enemyType;
-        Debug.Log(_enemyType);
+        //Debug.Log(_enemyType);
     }
 }

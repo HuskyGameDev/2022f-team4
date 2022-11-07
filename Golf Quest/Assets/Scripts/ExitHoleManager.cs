@@ -10,10 +10,12 @@ public class ExitHoleManager : MonoBehaviour {
     [SerializeField]
     private SpriteRenderer openSprite, closedSprite;
 
+    private LevelCompletedManager levelCompletedManager;
     private GameObject[] allEnemies;
 
     void Start() {
 
+        levelCompletedManager = GameObject.Find("LevelCompletedMenu").GetComponent<LevelCompletedManager>();
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         if(allEnemies.Length == 0) {
@@ -50,10 +52,7 @@ public class ExitHoleManager : MonoBehaviour {
         if(!isOpen())
             return;
 
-        Debug.Log("Level Complete, Progress To Next Level");
-        Application.Quit();
-
-        // Call to Overall Level Manager to Progress Levels.
+        levelCompletedManager.LevelCompleted();
     }
 
     public bool isOpen() { return open; }

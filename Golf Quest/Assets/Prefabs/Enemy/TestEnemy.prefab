@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6197577093066319682}
   - component: {fileID: 6197577093066319692}
   - component: {fileID: 2696820942476933780}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TestEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,6 +66,8 @@ MonoBehaviour:
   anyTimeAttack: 0
   attackCooldown: 1
   needsLOS: 0
+  needsFOV: 0
+  fov: 0
   maxTurnAttacks: 1
 --- !u!114 &2696820942476933780
 MonoBehaviour:
@@ -94,7 +96,7 @@ GameObject:
   - component: {fileID: 6197577094102965676}
   - component: {fileID: 6197577094102965678}
   - component: {fileID: 6197577094102965677}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

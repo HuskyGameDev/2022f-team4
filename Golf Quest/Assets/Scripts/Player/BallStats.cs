@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class BallStats : MonoBehaviour {
@@ -13,6 +14,9 @@ public class BallStats : MonoBehaviour {
     [SerializeField]
     private TextMeshProUGUI healthLabel;
 
+    private Image deathMenuBg;
+    private GameObject deathMenuPanel;
+
     [Header("Player Stats")]
     [SerializeField]
     private int maxHealth = 5;
@@ -24,30 +28,21 @@ public class BallStats : MonoBehaviour {
 
         currHealth = maxHealth;
         startTime = Time.time;
+
+        deathMenuBg = GameObject.Find("DeathMenu").GetComponent<Image>();
+        deathMenuPanel = deathMenuBg.transform.GetChild(0).gameObject;
     }
 
     void Update() {
 
         if (timeLabel)
-            timeLabel.SetText(formatTime(getElapsedTime()));
+            timeLabel.SetText(TimeManager.formatTime(getElapsedTime()));
         
         if (strokeLabel)
             strokeLabel.SetText(getStrokeCount().ToString());
         
         if (healthLabel)
             healthLabel.SetText(getCurrHealth() + "/" + getMaxHealth());
-    }
-
-    private string formatTime(float elapsedTime) {
-
-        int minutes = (int) elapsedTime / 60;
-        int seconds = (int) elapsedTime % 60;
-        int milliseconds = (int) ((elapsedTime - (int) elapsedTime) * 100);
-
-        if (minutes == 0)
-            return string.Format("{0:00}.{1:00}", seconds, milliseconds);
-        else
-            return string.Format("{0:##}:{1:00}.{2:00}", minutes, seconds, milliseconds);
     }
 
     //////////////////////////////
@@ -60,9 +55,9 @@ public class BallStats : MonoBehaviour {
 
         if(currHealth == 0) {
 
-            Debug.Log("You Died");
-            // Provide death screen
-            // Reset level
+            deathMenuBg.enabled = true;
+            deathMenuPanel.SetActive(true);
+            TimeManager.Pause();
         }
     }
 
