@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(BallStats), typeof(Rigidbody))]
 public class BallMovement : MonoBehaviour {
@@ -8,12 +9,14 @@ public class BallMovement : MonoBehaviour {
     private Rigidbody rigidBody;
     private LineRenderer pullLine;
     private BallStats ballStats;
+    private PlayerInput input;
+    private InputAction input_Aim, input_Submit, input_Cancel, input_LeftMouse, input_RightMouse;
 
     private Plane plane;
 
-    private Vector3 dragStartPos;   // Stores the position of where the mouse drag was started.
-    private Vector3 dragCurrPos;    // Stores the position of the mouse during the drag.
-    private bool dragging;          // Stores whether or not the player is currently dragging.
+    private Vector3 aimStartPos;   // Stores the position of where the mouse drag was started.
+    private Vector3 aimCurrPos;    // Stores the position of the mouse during the drag.
+    private bool aiming;          // Stores whether or not the player is currently aiming.
     private bool moving;
     private bool launching;
 
@@ -29,29 +32,79 @@ public class BallMovement : MonoBehaviour {
         rigidBody = GetComponent<Rigidbody>();
         pullLine = GetComponentInChildren<LineRenderer>();
         ballStats = GetComponent<BallStats>();
+        input = GetComponent<PlayerInput>();
         pullLine.enabled = false; 
         readySprite.enabled = false;
+
+        input_Aim = input.actions.FindAction("Aim");
+        input_Submit = input.actions.FindAction("Submit");
+        input_Cancel = input.actions.FindAction("Cancel");
+        input_LeftMouse = input.actions.FindAction("Click");
+        input_RightMouse = input.actions.FindAction("RightClick");
+
+        input_Cancel.performed += inputContext => {
+
+            if (lockRotation)
+                lockRotation = false;
+
+            ResetLaunch();
+        };
+        
+        input_Submit.performed += inputContext => {
+            
+            if (!aiming || moving || !input.currentControlScheme.Equals("Gamepad"))
+                return;
+
+            if (ControlsManager.Instance.getStyle() == ControlStyle.TwoStep && !lockRotation)
+                lockRotation = true;
+            else
+                Launch();
+        };
+        
+        input_LeftMouse.started += inputContext => {
+
+            if (moving)                                                                           // Only allow aiming if ball has stopped moving
+                return;
+
+            aimStartPos = this.transform.position;                                                // Store the start aim position
+            lockRotation = false;
+            aiming = true;                                                                        // Started aiming
+        };
+
+        input_LeftMouse.canceled += inputContext => {
+
+            if(!aiming || moving || input.currentControlScheme.Equals("Gamepad"))
+                return;
+
+            Launch();
+        };
+
+        input_RightMouse.performed += inputContext => {
+
+            ResetLaunch();
+        };
     }
 
     // Update is called once per frame
     void Update() {
 
-        plane = new Plane(Vector3.up, -this.transform.position.y);
+        if (input.currentControlScheme.Equals("Keyboard&Mouse") || input.currentControlScheme.Equals("Touch"))
+            PointerInput();
+        else if (input.currentControlScheme.Equals("Gamepad"))
+            GamepadInput();
 
-        if (dragging) {
-            
-            float planeEnter;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            plane.Raycast(ray, out planeEnter);    // Update the current mouse position while dragging
-            dragCurrPos = ray.GetPoint(planeEnter);
-
-            // Draw pull back band
-            pullLine.SetPositions(new Vector3[] {dragStartPos, dragCurrPos});
+        if(aiming) {
+            pullLine.enabled = true;
+            pullLine.SetPositions(new Vector3[] {aimStartPos, aimCurrPos});
+        } else {
+            pullLine.enabled = false;
         }
 
         if(rigidBody.velocity.sqrMagnitude > movingThreshold) {
             moving = true;
             launching = false;
+            lockRotation = false;
+            pullLine.enabled = false;
         } else {
             moving = false;
             launching = false;
@@ -61,48 +114,98 @@ public class BallMovement : MonoBehaviour {
         readySprite.enabled = !moving;
     }
 
-    private void OnMouseDown()
-    {
-        //Debug.Log("Mouse Pressed");
+    private void PointerInput() {
 
-        if (moving)                                                                             // Only allow dragging if ball has stopped moving
+        if(isMoving() || isLaunching())
             return;
 
-        dragStartPos = this.transform.position;                                                 // Store the start drag position
-        dragging = true;                                                                        // Started dragging
-        pullLine.enabled = true;
+        Vector2 position = input_Aim.ReadValue<Vector2>();
+
+        plane = new Plane(Vector3.up, -this.transform.position.y);
+
+        if (input_LeftMouse.inProgress && aiming) {
+
+            float planeEnter;
+            Ray ray = Camera.main.ScreenPointToRay(position);
+            plane.Raycast(ray, out planeEnter);    // Update the current mouse position while dragging
+            aimCurrPos = ray.GetPoint(planeEnter);
+        }
     }
 
-    private void OnMouseUp()
-    {
+    // Used for two-step gamepad controls
+    private bool lockRotation;
+    private Vector2 rotation;
+    private float distance = 1.0f;
 
-        //Debug.Log("Mouse Released");
-        Vector3 launchVector = dragCurrPos - dragStartPos;                                      // Calculate the desired launch vector
+    private void GamepadInput() {
+
+        Vector2 aim = input_Aim.ReadValue<Vector2>();
+
+        if (isMoving() || isLaunching() || input_LeftMouse.inProgress)
+            return;
+
+        if (input_Aim.inProgress) {
+
+            aimStartPos = this.transform.position;
+            aiming = true;
+
+            if (ControlsManager.Instance.getStyle() == ControlStyle.OneStep) {
+
+                rotation = aim.normalized;
+                distance = aim.magnitude * magnitudeMax * magnitudeMax;
+
+            } else {
+
+                if (!lockRotation) {
+
+                distance = 2.0f;
+                rotation = aim.normalized;
+
+                } else {
+
+                    distance = aim.magnitude * magnitudeMax * magnitudeMax;
+                }
+            }
+
+            aimCurrPos = transform.position + new Vector3(rotation.x, 0, rotation.y).normalized * distance;
+
+        } else {
+
+            aiming = false;
+        }
+    }
+
+    private void Launch() {
+
+        Vector3 launchVector = aimCurrPos - aimStartPos;                                        // Calculate the desired launch vector
         float magnitude = Mathf.Min(launchVector.magnitude * magnitudeScalar, magnitudeMax);    // Scale the magnitude and ensure it is capped at a maximum.
         Vector3 cappedVector = launchVector.normalized * magnitude * -1.0f;                     // Calculate the capped vector with the adjusted magnitude.
 
-        //Debug.Log(dragStartPos + " : " + dragCurrPos);
-        //Debug.Log(magnitude);
-
-        rigidBody.AddForce(cappedVector, ForceMode.Impulse);                                    // Apply an impulse force in the capped vector direction.
-        dragging = false;                                                                       // Stopped dragging
-        dragStartPos = Vector3.zero;                                                            // Reset positions
-        dragCurrPos = Vector3.zero;
-        pullLine.enabled = false;
+        rigidBody.AddForce(cappedVector, ForceMode.Impulse);
+        ResetLaunch();
         launching = true;
         Time.timeScale = 1.0f;
         ballStats.addStroke();
     }
 
-    private Vector3 screenToWorld(Vector3 vec) 
-    {   
+    private void ResetLaunch() {
+
+        aiming = false;                                                                       // Stopped dragging
+        aimStartPos = Vector3.zero;                                                            // Reset positions
+        aimCurrPos = Vector3.zero;
+        rotation = Vector2.zero;
+        distance = 1.0f;
+        pullLine.enabled = false;
+    }
+
+    private Vector3 screenToWorld(Vector3 vec)  {   
         vec.z = Camera.main.nearClipPlane;
         return Camera.main.ScreenToWorldPoint(vec);
     }
 
     public bool isMoving() { return moving; }
 
-    public bool isDragging() { return dragging; }
+    public bool isAiming() { return aiming; }
 
     public bool isLaunching() { return launching; }
 
@@ -111,12 +214,12 @@ public class BallMovement : MonoBehaviour {
         if(moving)
             return rigidBody.velocity.normalized;
         else 
-            return (dragStartPos - dragCurrPos).normalized;
+            return (aimStartPos - aimCurrPos).normalized;
     }
 
     public float getMagnitude() {
 
-        Vector3 dir = dragCurrPos - dragStartPos;
+        Vector3 dir = aimCurrPos - aimStartPos;
         return Mathf.Min(dir.magnitude * magnitudeScalar, magnitudeMax);
     }
 

@@ -43,8 +43,12 @@ public class LevelManager : MonoBehaviour {
             if(levelList == null)
                 levelList = GameObject.Find("LevelList");
 
-            if(levelList != null)
+            if(levelList != null) {
                 PopulateLevelList();
+
+                if(levelBtns[getNextLevelIndex()] != null)
+                    levelList.GetComponentInParent<TitleScreenManager>().setPageDefaultSelection("LevelsPage", levelBtns[getNextLevelIndex()].gameObject);
+            }
         }
     }
 
@@ -73,12 +77,26 @@ public class LevelManager : MonoBehaviour {
 
             if (lvl.isComplete())
                 continue;
-            
+
             if (lvl.isUnlocked())
                 return lvl;
         }
 
         return null;
+    }
+
+    public int getNextLevelIndex() {
+
+        for (int i = 0; i < levels.Length; i++) {
+
+            if (levels[i].isComplete())
+                continue;
+
+            if (levels[i].isUnlocked())
+                return i;
+        }
+
+        return -1;
     }
 
     private void PopulateLevelList() {

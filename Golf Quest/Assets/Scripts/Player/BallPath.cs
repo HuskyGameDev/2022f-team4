@@ -31,7 +31,7 @@ public class BallPath : MonoBehaviour {
 
     void Update() {
 
-        if(ballMovement.isDragging()) {
+        if (ballMovement.isAiming() && !ballMovement.isMoving()) {
 
             path.Clear();
 
@@ -41,11 +41,9 @@ public class BallPath : MonoBehaviour {
 
             for (int i = 0; i < path.Count; i++)
                 line.SetPosition(i, path[i]);
-
+ 
             line.enabled = true;
-        }
-
-        if(ballMovement.isMoving()) {
+        } else {
 
             path.Clear();
             line.enabled = false;

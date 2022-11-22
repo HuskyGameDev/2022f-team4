@@ -17,7 +17,7 @@ public class Billboarding : MonoBehaviour
 
     void Update() {
 
-        if(ball.isMoving() || ball.isDragging()) {
+        if(ball.isMoving() || ball.isAiming()) {
         
             angle = Mathf.Atan2(ball.getDirection().x, ball.getDirection().z) * Mathf.Rad2Deg;
         }

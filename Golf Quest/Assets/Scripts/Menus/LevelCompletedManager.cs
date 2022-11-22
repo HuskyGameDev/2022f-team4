@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class LevelCompletedManager : MonoBehaviour {
@@ -10,7 +11,7 @@ public class LevelCompletedManager : MonoBehaviour {
     private Image bg;
     private GameObject panel;
     public TextMeshProUGUI nameLabel, timeLabel, strokesLabel;
-    public Button nextLevelBtn;
+    public Button nextLevelBtn, exitBtn;
 
     private BallStats stats;
 
@@ -42,6 +43,11 @@ public class LevelCompletedManager : MonoBehaviour {
 
         LevelManager.Instance.CompleteLevel(name, time, strokes);
         TimeManager.Pause();
+
+        if(nextLevelBtn.IsActive())
+            EventSystem.current.SetSelectedGameObject(nextLevelBtn.gameObject);
+        else
+            EventSystem.current.SetSelectedGameObject(exitBtn.gameObject);
     }
 
     public void NextLevel() {

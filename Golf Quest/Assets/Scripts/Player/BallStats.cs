@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class BallStats : MonoBehaviour {
@@ -15,7 +16,7 @@ public class BallStats : MonoBehaviour {
     private TextMeshProUGUI healthLabel;
 
     private Image deathMenuBg;
-    private GameObject deathMenuPanel;
+    private GameObject deathMenuPanel, restartButton;
 
     [Header("Player Stats")]
     [SerializeField]
@@ -31,6 +32,7 @@ public class BallStats : MonoBehaviour {
 
         deathMenuBg = GameObject.Find("DeathMenu").GetComponent<Image>();
         deathMenuPanel = deathMenuBg.transform.GetChild(0).gameObject;
+        restartButton = deathMenuPanel.transform.GetChild(1).gameObject;
     }
 
     void Update() {
@@ -58,6 +60,7 @@ public class BallStats : MonoBehaviour {
             deathMenuBg.enabled = true;
             deathMenuPanel.SetActive(true);
             TimeManager.Pause();
+            EventSystem.current.SetSelectedGameObject(restartButton);
         }
     }
 

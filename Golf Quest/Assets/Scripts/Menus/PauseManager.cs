@@ -1,42 +1,61 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class PauseManager : MonoBehaviour {
 
-    private Image bg;
-    private GameObject panel;
+    private BallMovement ball;
+    private PlayerInput input;
+    private Image bg, levelCompleteMenu, deathMenu;
+    private GameObject panel, resumeButton;
     private static bool paused;
 
-    void Start() {
+    void Awake() {
 
+        ball = GameObject.Find("Player Ball").GetComponent<BallMovement>();
+        input = ball.gameObject.GetComponent<PlayerInput>();
         bg = GetComponent<Image>();
         panel = transform.GetChild(0).gameObject;
+        resumeButton = panel.transform.GetChild(0).gameObject;
+        levelCompleteMenu = GameObject.Find("LevelCompletedMenu").GetComponent<Image>();
+        deathMenu = GameObject.Find("DeathMenu").GetComponent<Image>();
         Resume();
-    }
 
-    void Update() {
-
-        if (Input.GetKeyDown("escape")) {
+        input.actions.FindAction("Cancel").performed += input => { if (paused && input.control.path != "/Keyboard/escape") { Resume(); } };
+        input.actions.FindAction("Pause").performed += input => { 
+            
+            if (ball.isAiming() && !ball.isMoving() && !ball.isLaunching())
+                return;
 
             if (paused)
                 Resume();
             else
                 Pause();
-        }
+        };
     }
     
     public void Pause() {
+
+        if(levelCompleteMenu.IsActive() || deathMenu.IsActive())
+            return;
+
+        if (bg == null || panel == null)
+            return;
 
         bg.enabled = true;
         panel.SetActive(true);
         TimeManager.Pause();
         paused = true;
+        EventSystem.current.SetSelectedGameObject(resumeButton);
     }
 
     public void Resume() {
+
+        if (bg == null || panel == null)
+            return;
 
         bg.enabled = false;
         panel.SetActive(false);
