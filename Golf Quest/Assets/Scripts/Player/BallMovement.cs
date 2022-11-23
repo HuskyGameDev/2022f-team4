@@ -10,7 +10,7 @@ public class BallMovement : MonoBehaviour {
     private LineRenderer pullLine;
     private BallStats ballStats;
     private PlayerInput input;
-    private InputAction input_Aim, input_Submit, input_Cancel, input_LeftMouse, input_RightMouse;
+    private InputAction input_Aim, input_Launch, input_Cancel;
 
     private Plane plane;
 
@@ -37,33 +37,31 @@ public class BallMovement : MonoBehaviour {
         readySprite.enabled = false;
 
         input_Aim = input.actions.FindAction("Aim");
-        input_Submit = input.actions.FindAction("Submit");
+        input_Launch = input.actions.FindAction("Launch");
         input_Cancel = input.actions.FindAction("Cancel");
-        input_LeftMouse = input.actions.FindAction("Click");
-        input_RightMouse = input.actions.FindAction("RightClick");
 
         input_Cancel.performed += inputContext => {
 
-            if (lockRotation)
+            if (input.currentControlScheme.Equals("Gamepad") && lockRotation)
                 lockRotation = false;
 
             ResetLaunch();
         };
         
-        input_Submit.performed += inputContext => {
+        input_Launch.performed += inputContext => {
             
-            if (!aiming || moving || !input.currentControlScheme.Equals("Gamepad"))
+            if (!aiming || moving || inputContext.action.bindings[inputContext.action.GetBindingIndexForControl(inputContext.control)].effectivePath.Contains("Mouse"))
                 return;
 
-            if (ControlsManager.Instance.getStyle() == ControlStyle.TwoStep && !lockRotation)
+            if (input.currentControlScheme.Equals("Gamepad") && ControlsManager.Instance.getStyle() == ControlStyle.TwoStep && !lockRotation)
                 lockRotation = true;
             else
                 Launch();
         };
         
-        input_LeftMouse.started += inputContext => {
+        input_Launch.started += inputContext => {
 
-            if (moving)                                                                           // Only allow aiming if ball has stopped moving
+            if (moving || input.currentControlScheme.Equals("Gamepad"))                           // Only allow aiming if ball has stopped moving
                 return;
 
             aimStartPos = this.transform.position;                                                // Store the start aim position
@@ -71,22 +69,20 @@ public class BallMovement : MonoBehaviour {
             aiming = true;                                                                        // Started aiming
         };
 
-        input_LeftMouse.canceled += inputContext => {
+        input_Launch.canceled += inputContext => {
 
             if(!aiming || moving || input.currentControlScheme.Equals("Gamepad"))
                 return;
 
             Launch();
         };
-
-        input_RightMouse.performed += inputContext => {
-
-            ResetLaunch();
-        };
     }
 
     // Update is called once per frame
     void Update() {
+
+        if (PauseManager.isPaused())
+            return;
 
         if (input.currentControlScheme.Equals("Keyboard&Mouse") || input.currentControlScheme.Equals("Touch"))
             PointerInput();
@@ -123,7 +119,7 @@ public class BallMovement : MonoBehaviour {
 
         plane = new Plane(Vector3.up, -this.transform.position.y);
 
-        if (input_LeftMouse.inProgress && aiming) {
+        if (input_Launch.inProgress && aiming) {
 
             float planeEnter;
             Ray ray = Camera.main.ScreenPointToRay(position);
@@ -141,7 +137,7 @@ public class BallMovement : MonoBehaviour {
 
         Vector2 aim = input_Aim.ReadValue<Vector2>();
 
-        if (isMoving() || isLaunching() || input_LeftMouse.inProgress)
+        if (isMoving() || isLaunching() || input_Launch.inProgress)
             return;
 
         if (input_Aim.inProgress) {

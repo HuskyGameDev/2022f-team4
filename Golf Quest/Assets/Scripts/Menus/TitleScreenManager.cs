@@ -24,15 +24,15 @@ public class TitleScreenManager : MonoBehaviour {
     void Start() {
 
         playBtnLabel = GameObject.Find("Play").GetComponentInChildren<TextMeshProUGUI>();
-        input_Cancel = EventSystem.current.GetComponent<InputSystemUIInputModule>().actionsAsset.FindAction("Cancel");
+        input_Cancel = EventSystem.current.GetComponent<InputSystemUIInputModule>().actionsAsset.FindAction("UI/Cancel");
     }
 
     void Update() {
 
-        if (LevelManager.Instance.getLevels()[0].isComplete() && !LevelManager.Instance.getLevels()[LevelManager.Instance.getLevels().Length - 1].isComplete())
+        if (playBtnLabel != null && LevelManager.Instance.getLevels()[0].isComplete() && !LevelManager.Instance.getLevels()[LevelManager.Instance.getLevels().Length - 1].isComplete())
             playBtnLabel.SetText("Continue: " + LevelManager.Instance.getNextLevel().getName());
 
-        if (input_Cancel.inProgress) {
+        if (input_Cancel != null && input_Cancel.inProgress) {
             Back();
         }
     }

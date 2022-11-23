@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class PauseManager : MonoBehaviour {
 
     private BallMovement ball;
-    private PlayerInput input;
+    private InputActionAsset input;
     private Image bg, levelCompleteMenu, deathMenu;
     private GameObject panel, resumeButton;
     private static bool paused;
@@ -16,7 +16,7 @@ public class PauseManager : MonoBehaviour {
     void Awake() {
 
         ball = GameObject.Find("Player Ball").GetComponent<BallMovement>();
-        input = ball.gameObject.GetComponent<PlayerInput>();
+        input = EventSystem.current.GetComponent<InputSystemUIInputModule>().actionsAsset;
         bg = GetComponent<Image>();
         panel = transform.GetChild(0).gameObject;
         resumeButton = panel.transform.GetChild(0).gameObject;
@@ -24,8 +24,8 @@ public class PauseManager : MonoBehaviour {
         deathMenu = GameObject.Find("DeathMenu").GetComponent<Image>();
         Resume();
 
-        input.actions.FindAction("Cancel").performed += input => { if (paused && input.control.path != "/Keyboard/escape") { Resume(); } };
-        input.actions.FindAction("Pause").performed += input => { 
+        input.FindAction("Cancel").performed += input => { if (paused && input.control.path != "/Keyboard/escape") { Resume(); } };
+        input.FindAction("Pause").performed += input => { 
             
             if (ball.isAiming() && !ball.isMoving() && !ball.isLaunching())
                 return;
@@ -74,4 +74,6 @@ public class PauseManager : MonoBehaviour {
         TimeManager.Resume();
         SceneManager.LoadScene("Title Screen");
     }
+
+    public static bool isPaused() { return paused; }
 }
