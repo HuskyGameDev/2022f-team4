@@ -46,7 +46,7 @@ public class LevelManager : MonoBehaviour {
             if(levelList != null) {
                 PopulateLevelList();
 
-                if(levelBtns[getNextLevelIndex()] != null)
+                if(getNextLevelIndex() >= 0)
                     levelList.GetComponentInParent<TitleScreenManager>().setPageDefaultSelection("LevelsPage", levelBtns[getNextLevelIndex()].gameObject);
             }
         }
@@ -96,7 +96,7 @@ public class LevelManager : MonoBehaviour {
                 return i;
         }
 
-        return -1;
+        return 0;
     }
 
     private void PopulateLevelList() {

@@ -17,6 +17,7 @@ public class MimicText : MonoBehaviour {
 
     void Update() {
 
+        self.font = label.font;
         self.SetText(label.text);
     }
 }

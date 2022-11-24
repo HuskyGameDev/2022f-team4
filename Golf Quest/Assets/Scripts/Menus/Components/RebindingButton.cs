@@ -50,6 +50,7 @@ public class RebindingButton : MonoBehaviour {
     private void setupRebinding() {
 
         btnBg.enabled = false;
+        label.font = ControlsManager.Instance.defaultFont;
         label.SetText(waiting);
 
         ControlsManager.Instance.inputActionAsset.Disable();
@@ -96,8 +97,14 @@ public class RebindingButton : MonoBehaviour {
             action.action.bindings[bindingIndex].effectivePath,
             InputControlPath.HumanReadableStringOptions.OmitDevice);
 
-        if (ControlsManager.Instance.currentGamepadSymbols.ContainsKey(text))
-            text = ControlsManager.Instance.currentGamepadSymbols[text];
+        if (ControlsManager.Instance.currentGamepadSymbols.ContainsKey(text)) {
+            text = ControlsManager.Instance.currentGamepadSymbols[text].ToString();
+            label.font = ControlsManager.Instance.symbolsFont;
+        } else if (ControlsManager.Instance.genericSymbols.ContainsKey(text)) {
+            text = ControlsManager.Instance.genericSymbols[text].ToString();
+            label.font = ControlsManager.Instance.symbolsFont;
+        } else
+            label.font = ControlsManager.Instance.defaultFont;
 
         label.SetText(text);
     }
