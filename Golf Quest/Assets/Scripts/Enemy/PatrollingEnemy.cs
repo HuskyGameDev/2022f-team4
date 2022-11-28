@@ -9,32 +9,25 @@ public class PatrollingEnemy : MonoBehaviour
     public int startNode;
     public float reachNodeDistance;
     public float nodeWaitTime;
+    public bool stopWhenTargettingPlayer;
     
     private EnemyPathNode _targetNode;
     private NavMeshAgent _navMeshAgent;
-    private TurretEnemy _turretEnemy;
+    private Enemy _enemy;
+    private RotatingEnemy _rotatingEnemy;
+    private float _navMeshAgentSpeed;   // Speed of navMeshAgent set in inspector. Used to restore after stopping to attack
 
     // Start is called before the first frame update
     void Start()
     {
         // Initialize path following
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _turretEnemy = GetComponent<TurretEnemy>();
-        setTargetNode(enemyPath.getNode(startNode));
+        _enemy = GetComponent<Enemy>();
+        _rotatingEnemy = GetComponent<RotatingEnemy>();
 
-        // If node wait time = -1, set it to as much time as is needed to face next node
-        // WIP DO NOT USE YET
-        if (nodeWaitTime < 0)
-        {
-            if (_turretEnemy != null)
-            {
-                nodeWaitTime = _turretEnemy.getAngleToTarget() / _turretEnemy.degreesPerSecond;
-            }
-            else
-            {
-                nodeWaitTime = 0;
-            }
-        }
+        _navMeshAgentSpeed = _navMeshAgent.speed;
+        _navMeshAgent.angularSpeed = _rotatingEnemy.degreesPerSecond;
+        setTargetNode(enemyPath.getNode(startNode));
     }
 
     // Update is called once per frame
@@ -44,6 +37,15 @@ public class PatrollingEnemy : MonoBehaviour
         if (distToTarget <= reachNodeDistance)
         {
             setTargetNode(enemyPath.getNextNode(_targetNode));
+        }
+
+        if (stopWhenTargettingPlayer && _rotatingEnemy.canTargetPlayer())
+        {
+            _navMeshAgent.speed = 0;
+        }
+        else if (_navMeshAgent.speed == 0)
+        {
+            _navMeshAgent.speed = _navMeshAgentSpeed;
         }
     }
     public IEnumerator WaitAtNode()
@@ -56,9 +58,9 @@ public class PatrollingEnemy : MonoBehaviour
     {
         _targetNode = targetNode;
 
-        if (_turretEnemy != null)
+        if (_rotatingEnemy != null)
         {
-            _turretEnemy.setAltRotationTarget(_targetNode.gameObject);
+            _rotatingEnemy.setAltRotationTarget(_targetNode.gameObject);
         }
 
         StartCoroutine(WaitAtNode());

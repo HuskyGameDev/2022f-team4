@@ -11,8 +11,8 @@ public class Enemy : MonoBehaviour
 
     // Conditions that determine when attack occurs
     public float attackCooldown;    // Time between attacks in seconds
-    public bool needsLOS;           // Player must be in line of sight to attack
-    public bool needsFOV;           // Player must be in field of view
+    public bool attackNeedsLOS;     // Player must be in line of sight to attack
+    public bool attackNeedsFOV;     // Player must be in field of view
     public float fov;               // Field of view in angles
     public int maxTurnAttacks;      // Maximum attacks which can occur within a turn, including start/end attacks. -1 for infinite
 
@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (anyTimeAttack && CanAttack())
+        if (anyTimeAttack && CanAttackPlayer())
         {
             //Debug.Log("Any Time Attack");
             Attack();
@@ -63,7 +63,11 @@ public class Enemy : MonoBehaviour
         _attackReady = true;
         _attacksElapsed = 0;
 
-        if (turnStartAttack && CanAttack())
+        // Set up layermask to ignore projectiles and other non-blocking objects
+        //int layerMask = DefaultRaycastLayers;
+        // originalLayerMask &= ~(1 << layerToRemove);
+
+        if (turnStartAttack && CanAttackPlayer())
         {
             //Debug.Log("Turn Start Attack");
             Attack();
@@ -71,12 +75,16 @@ public class Enemy : MonoBehaviour
     }
 
     // Determine if enemy can attack
-    private bool CanAttack()
+    private bool CanAttackPlayer()
     {
         return _attackReady                                                 // Ready to attack
             && ((_attacksElapsed < maxTurnAttacks) || maxTurnAttacks < 0)   // Has turn attacks remaining
-            && (!needsLOS || PlayerInLOS())                                 // Has line of sight on player if needed
-            && (!needsFOV || PlayerInFOV());
+            && CanSeePlayer();
+    }
+
+    public bool CanSeePlayer()
+    {
+        return (!attackNeedsLOS || PlayerInLOS()) && (!attackNeedsFOV || PlayerInFOV());
     }
 
     // Override this with actual attack behavior, then call super.attack() to handle attack readiness and cooldown
