@@ -27,7 +27,7 @@ public class PauseManager : MonoBehaviour {
         input.FindAction("Cancel").performed += input => { if (paused && input.control.path != "/Keyboard/escape") { Resume(); } };
         input.FindAction("Pause").performed += input => { 
             
-            if (ball.isAiming() && !ball.isMoving() && !ball.isLaunching())
+            if (this == null || ball.isAiming() && !ball.isMoving() && !ball.isLaunching())
                 return;
 
             if (paused)

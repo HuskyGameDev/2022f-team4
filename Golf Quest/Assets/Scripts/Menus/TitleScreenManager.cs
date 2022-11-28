@@ -14,6 +14,7 @@ public struct Page {
 
 public class TitleScreenManager : MonoBehaviour {
 
+    [SerializeField]
     private TextMeshProUGUI playBtnLabel;
 
     private InputAction input_Cancel;
@@ -23,8 +24,8 @@ public class TitleScreenManager : MonoBehaviour {
 
     void Start() {
 
-        playBtnLabel = GameObject.Find("Play").GetComponentInChildren<TextMeshProUGUI>();
         input_Cancel = EventSystem.current.GetComponent<InputSystemUIInputModule>().actionsAsset.FindAction("UI/Cancel");
+        ChangePage("TitlePage");
     }
 
     void Update() {
@@ -53,7 +54,7 @@ public class TitleScreenManager : MonoBehaviour {
 
     public void ChangePage(string pageName) {
 
-        if(pages[currentPageIndex].defaultToPreviouslySelected)
+        if(pages[currentPageIndex].defaultToPreviouslySelected && EventSystem.current.currentSelectedGameObject != null)
             pages[currentPageIndex].defaultSelection = EventSystem.current.currentSelectedGameObject;
 
         for (int i = 0; i < pages.Length; i++) {

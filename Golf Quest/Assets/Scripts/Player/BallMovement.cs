@@ -42,6 +42,9 @@ public class BallMovement : MonoBehaviour {
 
         input_Cancel.performed += inputContext => {
 
+            if (this == null)
+                return;
+
             if (input.currentControlScheme.Equals("Gamepad") && lockRotation)
                 lockRotation = false;
 
@@ -50,7 +53,7 @@ public class BallMovement : MonoBehaviour {
         
         input_Launch.performed += inputContext => {
             
-            if (!aiming || moving || inputContext.action.bindings[inputContext.action.GetBindingIndexForControl(inputContext.control)].effectivePath.Contains("Mouse"))
+            if (this == null || !aiming || moving || inputContext.action.bindings[inputContext.action.GetBindingIndexForControl(inputContext.control)].effectivePath.Contains("Mouse"))
                 return;
 
             if (input.currentControlScheme.Equals("Gamepad") && ControlsManager.Instance.getStyle() == ControlStyle.TwoStep && !lockRotation)
@@ -61,7 +64,7 @@ public class BallMovement : MonoBehaviour {
         
         input_Launch.started += inputContext => {
 
-            if (moving || input.currentControlScheme.Equals("Gamepad"))                           // Only allow aiming if ball has stopped moving
+            if (this == null || moving || (input != null && input.currentControlScheme.Equals("Gamepad")))                           // Only allow aiming if ball has stopped moving
                 return;
 
             aimStartPos = this.transform.position;                                                // Store the start aim position
@@ -71,7 +74,7 @@ public class BallMovement : MonoBehaviour {
 
         input_Launch.canceled += inputContext => {
 
-            if(!aiming || moving || input.currentControlScheme.Equals("Gamepad"))
+            if (this == null || !aiming || moving || input.currentControlScheme.Equals("Gamepad"))
                 return;
 
             Launch();

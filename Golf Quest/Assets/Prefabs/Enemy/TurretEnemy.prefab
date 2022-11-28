@@ -168,7 +168,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   degreesPerSecond: 30
   rotateWhenIdle: 1
-  projectile: {fileID: 352331871801072938, guid: 053bd163f8d8449409fc246aaeab642b, type: 3}
+  targetingNeedsLOS: 0
+  targetingNeedsFOV: 0
+  projectileSpeed: 3
+  projectilePrefab: {fileID: 352331871801072938, guid: bf40ba49873f8054d8ce69b52d0c82a4, type: 3}
 --- !u!114 &4246193882700619203
 MonoBehaviour:
   m_ObjectHideFlags: 0
