@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7082955451096633062}
   - component: {fileID: 7897672023053268485}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: placeholder_turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,8 @@ GameObject:
   - component: {fileID: 6376811015401107626}
   - component: {fileID: 1511489829470955648}
   - component: {fileID: 4246193882700619203}
-  m_Layer: 6
+  - component: {fileID: 3006202860301016814}
+  m_Layer: 2
   m_Name: TurretEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -188,6 +189,20 @@ MonoBehaviour:
   dmgOnWallHit: 0
   dmgOnHit: 0
   dmgOnDestroy: 0
+--- !u!64 &3006202860301016814
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6376811015401107623}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &6376811016437484101
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +214,7 @@ GameObject:
   - component: {fileID: 6376811016437484106}
   - component: {fileID: 6376811016437484104}
   - component: {fileID: 6376811016437484107}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
