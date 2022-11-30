@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7082955451096633062}
   - component: {fileID: 7897672023053268485}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: placeholder_turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6376811015401107626}
   - component: {fileID: 1511489829470955648}
   - component: {fileID: 4246193882700619203}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: TurretEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 6376811016437484106}
   - component: {fileID: 6376811016437484104}
   - component: {fileID: 6376811016437484107}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 418884212910492672}
   - component: {fileID: 528660020408816894}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: placeholder_turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 4800126668676528517}
   - component: {fileID: 6599029603411891600}
   - component: {fileID: 2696820942476933780}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FastPatrollingEnemy 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 6197577094102965676}
   - component: {fileID: 6197577094102965678}
   - component: {fileID: 6197577094102965677}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

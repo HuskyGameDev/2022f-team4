@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2696820942476933780}
   - component: {fileID: 6599029603411891600}
   - component: {fileID: 6441530868101689995}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TestMovingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,9 @@ MonoBehaviour:
   turnEndAttack: 0
   anyTimeAttack: 0
   attackCooldown: 1
-  needsLOS: 0
+  attackNeedsLOS: 0
+  attackNeedsFOV: 0
+  fov: 0
   maxTurnAttacks: 1
 --- !u!114 &2696820942476933780
 MonoBehaviour:
@@ -119,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c0701bc894103488f46fd2609d312f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  point: {fileID: 0}
+  destination: {fileID: 0}
 --- !u!1 &6197577094102965667
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,7 +133,7 @@ GameObject:
   - component: {fileID: 6197577094102965676}
   - component: {fileID: 6197577094102965678}
   - component: {fileID: 6197577094102965677}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
