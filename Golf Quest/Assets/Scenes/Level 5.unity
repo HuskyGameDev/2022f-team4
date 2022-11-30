@@ -2931,6 +2931,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1730232943}
     - target: {fileID: 5693065132534846187, guid: c9d8251a1b1e57145a69c28ede3a6bad, type: 3}
+      propertyPath: startNode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693065132534846187, guid: c9d8251a1b1e57145a69c28ede3a6bad, type: 3}
       propertyPath: nodeWaitTime
       value: 2
       objectReference: {fileID: 0}
@@ -2952,7 +2956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6197577093066319683, guid: c9d8251a1b1e57145a69c28ede3a6bad, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6197577093066319683, guid: c9d8251a1b1e57145a69c28ede3a6bad, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3007,10 +3011,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 510564314609531948, guid: c40b2ee5a88b12142a57019053aafbc2, type: 3}
-      propertyPath: timeScaleMin
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 510564314609531949, guid: c40b2ee5a88b12142a57019053aafbc2, type: 3}
       propertyPath: m_Name
       value: TimeManager
