@@ -138,4 +138,9 @@ public class Enemy : MonoBehaviour
         _enemyType = enemyType;
         //Debug.Log(_enemyType);
     }
+
+    public bool getAttackReady()
+    {
+        return _attackReady;
+    }
 }
