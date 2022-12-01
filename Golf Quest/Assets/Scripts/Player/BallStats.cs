@@ -14,21 +14,13 @@ public class BallStats : MonoBehaviour {
     private TextMeshProUGUI strokeLabel;
     [SerializeField]
     private TextMeshProUGUI healthLabel;
-    [SerializeField]
-    private Image healthBar;
-
-    public Sprite fullHP;
-    public Sprite twoHP;
-    public Sprite oneHP;
-    public Sprite noHP;
-
 
     private Image deathMenuBg;
     private GameObject deathMenuPanel, restartButton;
 
     [Header("Player Stats")]
     [SerializeField]
-    private int maxHealth = 3;
+    private int maxHealth = 5;
 
     private int currHealth, strokeCount;
     private float startTime;
@@ -41,29 +33,18 @@ public class BallStats : MonoBehaviour {
         deathMenuBg = GameObject.Find("DeathMenu").GetComponent<Image>();
         deathMenuPanel = deathMenuBg.transform.GetChild(0).gameObject;
         restartButton = deathMenuPanel.transform.GetChild(1).gameObject;
-        healthBar = GetComponent<Image>();
     }
 
     void Update() {
 
-        if (timeLabel){
+        if (timeLabel)
             timeLabel.SetText(TimeManager.formatTime(getElapsedTime()));
-        }
-        if (strokeLabel){
+        
+        if (strokeLabel)
             strokeLabel.SetText(getStrokeCount().ToString());
-        }
-        if (healthLabel){
+        
+        if (healthLabel)
             healthLabel.SetText(getCurrHealth() + "/" + getMaxHealth());
-        }
-        if(healthBar){
-            if(currHealth >= 3)
-                healthBar.sprite = fullHP;
-            if(currHealth == 2)
-                healthBar.sprite = twoHP;
-            if(currHealth == 1)
-                healthBar.sprite = oneHP;
-            if(currHealth == 0)
-                healthBar.sprite = noHP;    }
     }
 
     //////////////////////////////
@@ -86,7 +67,7 @@ public class BallStats : MonoBehaviour {
     public void addStroke() { strokeCount++; }
 
     public int getMaxHealth() { return maxHealth; }
-    public int getCurrHealth() { return currHealth; }
+    public int getCurrHealth() { return currHealth; }    
     public int getStrokeCount() { return strokeCount; }
     public float getElapsedTime() { return Time.time - startTime; }
 }
