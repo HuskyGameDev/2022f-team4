@@ -628,7 +628,7 @@ MonoBehaviour:
   timeLabel: {fileID: 0}
   strokeLabel: {fileID: 0}
   healthLabel: {fileID: 0}
-  maxHealth: 5
+  maxHealth: 1
 --- !u!114 &4995570462079790778
 MonoBehaviour:
   m_ObjectHideFlags: 0

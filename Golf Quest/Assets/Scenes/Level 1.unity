@@ -2581,6 +2581,10 @@ PrefabInstance:
       value: Player Ball
       objectReference: {fileID: 0}
     - target: {fileID: 6447282347769975651, guid: a27640f4991db8f41971cc67816f978f, type: 3}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447282347769975651, guid: a27640f4991db8f41971cc67816f978f, type: 3}
       propertyPath: timeLabel
       value: 
       objectReference: {fileID: 1336133168}
