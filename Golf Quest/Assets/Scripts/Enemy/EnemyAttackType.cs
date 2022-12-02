@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface EnemyType
+public interface EnemyAttackType
 {
     public IEnumerator Attack();
 }

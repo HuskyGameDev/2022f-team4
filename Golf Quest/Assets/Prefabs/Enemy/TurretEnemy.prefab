@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 6376811015401107626}
   - component: {fileID: 1511489829470955648}
   - component: {fileID: 4246193882700619203}
+  - component: {fileID: -270615400808976253}
   m_Layer: 6
   m_Name: TurretEnemy
   m_TagString: Enemy
@@ -168,10 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   degreesPerSecond: 30
   rotateWhenIdle: 1
-  targetingNeedsLOS: 0
+  targetingNeedsLOS: 1
   targetingNeedsFOV: 0
-  projectileSpeed: 3
-  projectilePrefab: {fileID: 352331871801072938, guid: bf40ba49873f8054d8ce69b52d0c82a4, type: 3}
 --- !u!114 &4246193882700619203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +187,20 @@ MonoBehaviour:
   dmgOnWallHit: 0
   dmgOnHit: 0
   dmgOnDestroy: 0
+--- !u!114 &-270615400808976253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6376811015401107623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e910e4a6a694040bdef75a6493bcde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileSpeed: 4
+  projectilePrefab: {fileID: 352331871801072938, guid: 053bd163f8d8449409fc246aaeab642b, type: 3}
 --- !u!1 &6376811016437484101
 GameObject:
   m_ObjectHideFlags: 0

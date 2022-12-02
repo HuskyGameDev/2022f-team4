@@ -180,7 +180,8 @@ GameObject:
   - component: {fileID: 2227188740477645336}
   - component: {fileID: 2227188740477645334}
   - component: {fileID: 8970019647523004287}
-  - component: {fileID: 469947294132227976}
+  - component: {fileID: -9073696547373854719}
+  - component: {fileID: 6863403264231696423}
   m_Layer: 6
   m_Name: LazerEnemy
   m_TagString: Enemy
@@ -254,7 +255,7 @@ MonoBehaviour:
   dmgOnWallHit: 0
   dmgOnHit: 0
   dmgOnDestroy: 0
---- !u!114 &469947294132227976
+--- !u!114 &-9073696547373854719
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,12 +264,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2227188740477645339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c694528133f6640a5a630a98a90ad9, type: 3}
+  m_Script: {fileID: 11500000, guid: 880848f03e3b40547ba667805c636ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   degreesPerSecond: 45
   rotateWhenIdle: 1
   targetingNeedsLOS: 1
   targetingNeedsFOV: 0
-  projectileSpeed: 0
+--- !u!114 &6863403264231696423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2227188740477645339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e2dd5132bd1014c88d440382b714f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   lazerPrefab: {fileID: 1722564975528612205, guid: c427a0d9c13aeb6439bf07ebca1096e3, type: 3}

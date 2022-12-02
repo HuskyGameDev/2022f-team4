@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotatingEnemy : MonoBehaviour, EnemyType
+public class RotatingEnemy : MonoBehaviour
 {
     public float degreesPerSecond;
     public bool rotateWhenIdle;
     public bool targetingNeedsLOS;
     public bool targetingNeedsFOV;
-    public float projectileSpeed;
-    public GameObject projectilePrefab;
 
     private Enemy _enemy;
     private GameObject _altRotationTarget;  // What to rotate towards when player is not visible
@@ -18,7 +16,6 @@ public class RotatingEnemy : MonoBehaviour, EnemyType
     void Start()
     {
         _enemy = GetComponent<Enemy>();
-        _enemy.setEnemyType(this);
 
         _altRotationTarget = null;
     }
@@ -64,21 +61,5 @@ public class RotatingEnemy : MonoBehaviour, EnemyType
     public void setAltRotationTarget(GameObject altRotationTarget)
     {
         _altRotationTarget = altRotationTarget;
-    }
-
-    public IEnumerator Attack()
-    {
-        //Debug.Log("Turret Attack!");
-
-        Projectile projectile = Instantiate(projectilePrefab, transform, false).GetComponent<Projectile>();
-        projectile.transform.Translate(Vector3.right * 0.6f);
-        projectile.transform.SetParent(null);
-
-        if (projectileSpeed > 0)
-        {
-            projectile.Speed = projectileSpeed;
-        }
-
-        yield return new WaitForSeconds(0.1f);
     }
 }

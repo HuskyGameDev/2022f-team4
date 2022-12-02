@@ -11,7 +11,7 @@ public class Lazer : MonoBehaviour
     [SerializeField]
     private int reflectionCount = 2;
 
-    private MeshCollider meshCollider;
+    private MeshCollider _meshCollider;
 
     public float flashSpeed, chargeWidth, fireWidth;
     public int flashCount;
@@ -44,7 +44,7 @@ public class Lazer : MonoBehaviour
 
         Mesh mesh = new Mesh();
         lazer.BakeMesh(mesh, true);
-        meshCollider.sharedMesh = mesh;
+        _meshCollider.sharedMesh = mesh;
     }
 
     public IEnumerator wait(float timeInSeconds)
@@ -59,6 +59,7 @@ public class Lazer : MonoBehaviour
     void Start()
     {
         lazer = GetComponent<LineRenderer>();
+        _meshCollider = GetComponent<MeshCollider>();
 
         raycastPath(this.transform.position, this.transform.right);
 

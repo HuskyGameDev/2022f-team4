@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     private ExitHoleManager exitHole;
 
     // Enemy type for attack coroutine
-    private EnemyType _enemyType;
+    private EnemyAttackType _enemyAttackType;
 
     /*
     void Awake()
@@ -90,11 +90,11 @@ public class Enemy : MonoBehaviour
     // Override this with actual attack behavior, then call super.attack() to handle attack readiness and cooldown
     protected void Attack()
     {
-        if(_enemyType == null)
+        if(_enemyAttackType == null)
         return;
 
         _attackReady = false;
-        StartCoroutine(_enemyType.Attack()); 
+        StartCoroutine(_enemyAttackType.Attack()); 
         _attacksElapsed++;
         StartCoroutine(AttackCooldown());
     }
@@ -133,9 +133,9 @@ public class Enemy : MonoBehaviour
         return Vector3.Angle(lookVector, playerVector) <= fov / 2;
     }
 
-    public void setEnemyType(EnemyType enemyType)
+    public void setEnemyType(EnemyAttackType enemyType)
     {
-        _enemyType = enemyType;
+        _enemyAttackType = enemyType;
         //Debug.Log(_enemyType);
     }
 

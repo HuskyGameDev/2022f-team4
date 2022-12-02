@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LazerEnemy : MonoBehaviour, EnemyType
+// DEPRECATED- DO NOT USE
+
+public class LazerEnemy : MonoBehaviour
 {
     public float degreesPerSecond;
     public bool rotateWhenIdle;
     public bool targetingNeedsLOS;
     public bool targetingNeedsFOV;
     public float projectileSpeed;
-    public GameObject lazerPrefab;
 
     private Enemy _enemy;
     private GameObject _altRotationTarget;  // What to rotate towards when player is not visible
@@ -18,7 +19,6 @@ public class LazerEnemy : MonoBehaviour, EnemyType
     void Start()
     {
         _enemy = GetComponent<Enemy>();
-        _enemy.setEnemyType(this);
 
         _altRotationTarget = null;
     }
@@ -67,16 +67,5 @@ public class LazerEnemy : MonoBehaviour, EnemyType
     public void setAltRotationTarget(GameObject altRotationTarget)
     {
         _altRotationTarget = altRotationTarget;
-    }
-
-    public IEnumerator Attack()
-    {
-        //Debug.Log("Turret Attack!");
-
-        Lazer lazer = Instantiate(lazerPrefab, transform, false).GetComponent<Lazer>();
-        lazer.transform.Translate(Vector3.right);
-        lazer.transform.SetParent(null);
-
-        yield return new WaitForSeconds(0.1f);
     }
 }
