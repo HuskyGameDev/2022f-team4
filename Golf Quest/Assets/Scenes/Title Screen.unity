@@ -20635,6 +20635,7 @@ MonoBehaviour:
   - sceneName: Level 2
   - sceneName: Level 3
   - sceneName: Level 4
+  - sceneName: Level 5
 --- !u!1 &3840841429969968493
 GameObject:
   m_ObjectHideFlags: 0
