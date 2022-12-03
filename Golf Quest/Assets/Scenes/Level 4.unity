@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 240030645}
   - component: {fileID: 240030647}
   - component: {fileID: 240030646}
+  - component: {fileID: 240030648}
   m_Layer: 0
   m_Name: Torch Light (3)
   m_TagString: Untagged
@@ -291,6 +292,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &240030648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240030644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40c0ea023e37e247908badf111184bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 0}
+  minIntensity: 1.5
+  maxIntensity: 3
+  smoothing: 15
 --- !u!43 &274669731
 Mesh:
   m_ObjectHideFlags: 0
@@ -461,7 +478,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-115226
+  m_Name: pb_Mesh92950
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2619,6 +2636,7 @@ GameObject:
   - component: {fileID: 775761542}
   - component: {fileID: 775761544}
   - component: {fileID: 775761543}
+  - component: {fileID: 775761545}
   m_Layer: 0
   m_Name: Torch Light (4)
   m_TagString: Untagged
@@ -2719,6 +2737,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &775761545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775761541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40c0ea023e37e247908badf111184bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 0}
+  minIntensity: 1.5
+  maxIntensity: 3
+  smoothing: 15
 --- !u!1 &776194222
 GameObject:
   m_ObjectHideFlags: 0
@@ -2730,6 +2764,7 @@ GameObject:
   - component: {fileID: 776194223}
   - component: {fileID: 776194225}
   - component: {fileID: 776194224}
+  - component: {fileID: 776194226}
   m_Layer: 0
   m_Name: Torch Light (2)
   m_TagString: Untagged
@@ -2830,6 +2865,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &776194226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776194222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40c0ea023e37e247908badf111184bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 0}
+  minIntensity: 1.5
+  maxIntensity: 3
+  smoothing: 15
 --- !u!850595691 &1076380903
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -4921,6 +4972,7 @@ GameObject:
   - component: {fileID: 1273234630}
   - component: {fileID: 1273234632}
   - component: {fileID: 1273234631}
+  - component: {fileID: 1273234633}
   m_Layer: 0
   m_Name: Torch Light (1)
   m_TagString: Untagged
@@ -5021,6 +5073,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1273234633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273234629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40c0ea023e37e247908badf111184bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 0}
+  minIntensity: 1.5
+  maxIntensity: 3
+  smoothing: 15
 --- !u!43 &1325644214
 Mesh:
   m_ObjectHideFlags: 0

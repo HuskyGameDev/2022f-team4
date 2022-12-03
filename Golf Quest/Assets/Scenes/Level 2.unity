@@ -3591,6 +3591,7 @@ GameObject:
   - component: {fileID: 1277605349}
   - component: {fileID: 1277605351}
   - component: {fileID: 1277605350}
+  - component: {fileID: 1277605352}
   m_Layer: 0
   m_Name: Torch Light (1)
   m_TagString: Untagged
@@ -3625,10 +3626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 1277605351}
-  minIntensity: 1.5
-  maxIntensity: 3
-  smoothing: 5
 --- !u!108 &1277605351
 Light:
   m_ObjectHideFlags: 0
@@ -3691,6 +3688,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1277605352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277605348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40c0ea023e37e247908badf111184bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 0}
+  minIntensity: 1.5
+  maxIntensity: 3
+  smoothing: 15
 --- !u!1001 &1314011101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3910,6 +3923,7 @@ GameObject:
   - component: {fileID: 1391493231}
   - component: {fileID: 1391493233}
   - component: {fileID: 1391493232}
+  - component: {fileID: 1391493234}
   m_Layer: 0
   m_Name: Torch Light
   m_TagString: Untagged
@@ -3944,10 +3958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 1391493233}
-  minIntensity: 1.5
-  maxIntensity: 3
-  smoothing: 5
 --- !u!108 &1391493233
 Light:
   m_ObjectHideFlags: 0
@@ -4010,6 +4020,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1391493234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391493230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40c0ea023e37e247908badf111184bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 0}
+  minIntensity: 1.5
+  maxIntensity: 3
+  smoothing: 15
 --- !u!1 &1484875685
 GameObject:
   m_ObjectHideFlags: 0
@@ -5772,6 +5798,7 @@ GameObject:
   - component: {fileID: 1632523224}
   - component: {fileID: 1632523226}
   - component: {fileID: 1632523225}
+  - component: {fileID: 1632523227}
   m_Layer: 0
   m_Name: Torch Light (2)
   m_TagString: Untagged
@@ -5806,10 +5833,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 1632523226}
-  minIntensity: 1.5
-  maxIntensity: 3
-  smoothing: 5
 --- !u!108 &1632523226
 Light:
   m_ObjectHideFlags: 0
@@ -5872,6 +5895,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1632523227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632523223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40c0ea023e37e247908badf111184bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 0}
+  minIntensity: 1.5
+  maxIntensity: 3
+  smoothing: 15
 --- !u!43 &1687635784
 Mesh:
   m_ObjectHideFlags: 0
