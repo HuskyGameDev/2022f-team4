@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Billboarding : MonoBehaviour
 {
-    
     private BallMovement ball;
 
     private float angle;
@@ -18,7 +17,6 @@ public class Billboarding : MonoBehaviour
     void Update() {
 
         if(ball.isMoving() || ball.isAiming()) {
-        
             angle = Mathf.Atan2(ball.getDirection().x, ball.getDirection().z) * Mathf.Rad2Deg;
         }
 

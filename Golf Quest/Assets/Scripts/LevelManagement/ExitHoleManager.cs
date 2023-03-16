@@ -3,12 +3,15 @@ using UnityEngine;
 public class ExitHoleManager : MonoBehaviour {
 
     private bool open = false;
+    private bool hasPlayed = false;
+
 
     [SerializeField]
     private SpriteRenderer openSprite, closedSprite;
 
     private LevelCompletedManager levelCompletedManager;
     private GameObject[] allEnemies;
+    public AudioSource audioPlayer;
 
     void Start() {
 
@@ -32,6 +35,10 @@ public class ExitHoleManager : MonoBehaviour {
 
         if(allEnemies.Length == 0) {
             open = true;
+            if(!hasPlayed){
+               audioPlayer.Play();
+            hasPlayed = true;
+     }
             openSprite.enabled = true;
             closedSprite.enabled = false;
         } else {

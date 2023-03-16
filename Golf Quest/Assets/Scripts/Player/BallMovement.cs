@@ -24,7 +24,6 @@ public class BallMovement : MonoBehaviour {
     [SerializeField]
     private float magnitudeMax = 20.0f, magnitudeScalar = 100.0f, movingThreshold = 0.1f;
     [SerializeField]
-    private SpriteRenderer readySprite; // Displays when they player is ready to be charged and launched again.
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +33,6 @@ public class BallMovement : MonoBehaviour {
         ballStats = GetComponent<BallStats>();
         input = GetComponent<PlayerInput>();
         pullLine.enabled = false; 
-        readySprite.enabled = false;
 
         input_Aim = input.actions.FindAction("Aim");
         input_Launch = input.actions.FindAction("Launch");
@@ -50,9 +48,9 @@ public class BallMovement : MonoBehaviour {
 
             ResetLaunch();
         };
-        
+
         input_Launch.performed += inputContext => {
-            
+
             if (this == null || !aiming || moving || inputContext.action.bindings[inputContext.action.GetBindingIndexForControl(inputContext.control)].effectivePath.Contains("Mouse"))
                 return;
 
@@ -61,7 +59,7 @@ public class BallMovement : MonoBehaviour {
             else
                 Launch();
         };
-        
+
         input_Launch.started += inputContext => {
 
             if (this == null || moving || (input != null && input.currentControlScheme.Equals("Gamepad")))                           // Only allow aiming if ball has stopped moving
@@ -109,8 +107,6 @@ public class BallMovement : MonoBehaviour {
             launching = false;
             rigidBody.velocity = Vector3.zero;
         }
-
-        readySprite.enabled = !moving;
     }
 
     private void PointerInput() {
@@ -223,4 +219,9 @@ public class BallMovement : MonoBehaviour {
     }
 
     public float getMovingThreshold() { return movingThreshold; }
+
+
+    public void OnCollissionEnter(Collision collision){
+
+    }
 }

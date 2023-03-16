@@ -15,6 +15,7 @@ public class Destructible : MonoBehaviour {
         Dmg On Destroy      Stores the damage this object deals the player when it destroys this object.
     */
     private Animator anim;
+    public AudioSource audioPlayer;
 
     private int currHealth;
 
@@ -55,6 +56,7 @@ public class Destructible : MonoBehaviour {
 
             // Play destruction animation
             // Play destruction sound
+            audioPlayer.Play();
             // anim.SetTrigger("Break");                                       //Needs to be fixed; will be used to trigger the breaking / death animation
             Destroy(gameObject);
         }
