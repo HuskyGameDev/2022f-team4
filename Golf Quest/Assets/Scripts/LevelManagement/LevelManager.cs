@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour {
     [SerializeField]
     private Level[] levels;
     private Button[] levelBtns = new Button[0];
+    private int[] Par;
 
     void Awake() {
         
@@ -101,6 +102,11 @@ public class LevelManager : MonoBehaviour {
 
     private void PopulateLevelList() {
 
+        Par = new int[levels.Length];
+        for (int i = 0; i < Par.Length; i++) {
+            Par[i] = 5;
+        }
+
         if (levelBtns.Length != levels.Length) {
             foreach (Transform btn in levelList.GetComponentsInChildren<Transform>())
                 if(btn.name.Contains("Button"))
@@ -122,6 +128,7 @@ public class LevelManager : MonoBehaviour {
 
             btn.name = lvl.getName() + " Button";
             btn.transform.Find("LevelName").GetComponent<TextMeshProUGUI>().SetText(lvl.getName());
+            btn.transform.Find("Par").GetComponent<TextMeshProUGUI>().SetText("Par: " + Par[i]);
             btn.transform.Find("BestStrokes").GetComponent<TextMeshProUGUI>().SetText("Strokes:\n" + lvl.getBestStrokes().ToString());
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(delegate { lvl.load(); });
