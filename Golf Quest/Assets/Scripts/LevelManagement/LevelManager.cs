@@ -52,13 +52,13 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
-    public void CompleteLevel(string sceneName, float time, int strokes) {
+    public void CompleteLevel(string sceneName, int strokes) {
 
         for (int i = 0; i < levels.Length; i++) {
 
             if(levels[i].getName().Equals(sceneName)) {
 
-                levels[i].completeLevel(time, strokes);
+                levels[i].completeLevel(strokes);
 
                 if(i < levels.Length - 1)
                     levels[i + 1].unlock();
@@ -122,8 +122,7 @@ public class LevelManager : MonoBehaviour {
 
             btn.name = lvl.getName() + " Button";
             btn.transform.Find("LevelName").GetComponent<TextMeshProUGUI>().SetText(lvl.getName());
-            btn.transform.Find("BestTime").GetComponent<TextMeshProUGUI>().SetText(TimeManager.formatTime(lvl.getBestTime()));
-            btn.transform.Find("BestStrokes").GetComponent<TextMeshProUGUI>().SetText(lvl.getBestStrokes().ToString());
+            btn.transform.Find("BestStrokes").GetComponent<TextMeshProUGUI>().SetText("Strokes:\n" + lvl.getBestStrokes().ToString());
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(delegate { lvl.load(); });
 
