@@ -186,7 +186,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh39346
+  m_Name: pb_Mesh28244
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -508,7 +508,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86076
+  m_Name: pb_Mesh28394
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4535,7 +4535,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-106844
+  m_Name: pb_Mesh28382
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5198,17 +5198,6 @@ MonoBehaviour:
 --- !u!114 &1336133167 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7228821142702508266, guid: 79917457e195d844da2ab5b659715141, type: 3}
-  m_PrefabInstance: {fileID: 1336133165}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1336133168 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4183252062895556482, guid: 79917457e195d844da2ab5b659715141, type: 3}
   m_PrefabInstance: {fileID: 1336133165}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -6762,7 +6751,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-106846
+  m_Name: pb_Mesh28356
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10287,7 +10276,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh85994
+  m_Name: pb_Mesh28288
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10576,7 +10565,7 @@ PrefabInstance:
     - target: {fileID: 6447282347769975651, guid: a27640f4991db8f41971cc67816f978f, type: 3}
       propertyPath: timeLabel
       value: 
-      objectReference: {fileID: 1336133168}
+      objectReference: {fileID: 0}
     - target: {fileID: 6447282347769975651, guid: a27640f4991db8f41971cc67816f978f, type: 3}
       propertyPath: healthLabel
       value: 
