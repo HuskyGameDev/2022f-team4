@@ -6,6 +6,7 @@ public class Billboarding : MonoBehaviour
 {
     
     private BallMovement ball;
+    public Animator animator;
 
     private float angle;
 
@@ -13,6 +14,8 @@ public class Billboarding : MonoBehaviour
     void Start() {
 
         ball = this.GetComponentInParent<BallMovement>();
+        animator.SetBool("Moving",true);
+
     }
 
     void Update() {
@@ -24,5 +27,15 @@ public class Billboarding : MonoBehaviour
 
         transform.forward = Camera.main.transform.forward;
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, angle, transform.rotation.eulerAngles.z);
+    
+        if(ball.isMoving()){
+            animator.SetBool("Moving",true);
+            animator.speed = ball.getSpeed() / 10;
+
+        }else{
+        animator.SetBool("Moving",false);
+        }
     }
+
+
 }
