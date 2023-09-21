@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1594174696561214294}
   - component: {fileID: 2427579725267176691}
   - component: {fileID: 456140834609133625}
-  - component: {fileID: 4499599339886400181}
   - component: {fileID: 1266949715770991802}
   - component: {fileID: 1266949715770991803}
+  - component: {fileID: -7972684689593517271}
   m_Layer: 3
   m_Name: Door_Basement_Right
   m_TagString: Wall
@@ -87,20 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4499599339886400181
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113443713580718572}
-  m_Material: {fileID: 13400000, guid: aec11419b14ba6644826aee2d386ebc8, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 196020566272700627, guid: 681220b62dd908f45ada123d56e66448, type: 3}
 --- !u!82 &1266949715770991802
 AudioSource:
   m_ObjectHideFlags: 0
@@ -212,3 +198,16 @@ MonoBehaviour:
   clockwise: 0
   enemiesRemaining: 2
   angle: 90
+--- !u!65 &-7972684689593517271
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113443713580718572}
+  m_Material: {fileID: 13400000, guid: aec11419b14ba6644826aee2d386ebc8, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.15, y: 2.1, z: 0.09}
+  m_Center: {x: 1.83, y: 1.1, z: 0.07}

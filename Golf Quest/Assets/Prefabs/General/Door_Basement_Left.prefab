@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5096653357360316784}
   - component: {fileID: 5096653357363741008}
   - component: {fileID: 5096653357362611088}
-  - component: {fileID: 5096653357360356691}
   - component: {fileID: 924970524569382519}
   - component: {fileID: 924970524569382520}
   - component: {fileID: -1662044480756709537}
@@ -88,20 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5096653357360356691
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5096653357360356688}
-  m_Material: {fileID: 13400000, guid: aec11419b14ba6644826aee2d386ebc8, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1073003551628988410, guid: 2336cdcbcfff9ee4d9865ba46e29914d, type: 3}
 --- !u!82 &924970524569382519
 AudioSource:
   m_ObjectHideFlags: 0
@@ -224,5 +209,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2314583, y: 2.1323712, z: 0.09961698}
-  m_Center: {x: -0.58855844, y: 1.1175505, z: 0.04878366}
+  m_Size: {x: 1.15, y: 2.1, z: 0.09}
+  m_Center: {x: -0.63, y: 1.1, z: 0.07}
