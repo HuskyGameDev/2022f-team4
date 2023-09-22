@@ -19,7 +19,7 @@ public class DoorManager : MonoBehaviour
     {
         open = false;
         doorAngle = 0;
-        doorCreak = GetComponent<AudioSource>();
+        doorCreak = this.gameObject.GetComponent<AudioSource>();
 
         //levelCompletedManager = GameObject.Find("LevelCompletedMenu").GetComponent<LevelCompletedManager>();
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
