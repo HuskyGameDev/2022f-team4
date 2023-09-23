@@ -11,7 +11,6 @@ public class DoorManager : MonoBehaviour
     private bool open;  // Flag that shows whether the door needs to "open"
     private int doorAngle; // Keeps track of the number of degrees the door has been rotated since its starting position
     AudioSource doorCreak;
-    
     private GameObject[] allEnemies;
 
     // Start is called before the first frame update
@@ -19,11 +18,11 @@ public class DoorManager : MonoBehaviour
     {
         open = false;
         doorAngle = 0;
-        doorCreak = GetComponent<AudioSource>();
+        doorCreak = this.gameObject.GetComponent<AudioSource>();
 
         //levelCompletedManager = GameObject.Find("LevelCompletedMenu").GetComponent<LevelCompletedManager>();
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-
+/*
         if(allEnemies.Length <= enemiesRemaining) {
             open = true;
             //openSprite.enabled = true;
@@ -35,7 +34,7 @@ public class DoorManager : MonoBehaviour
             //closedSprite.enabled = true;
         }
 
-
+*/
     }
 
     // Update is called once per frame
@@ -43,44 +42,29 @@ public class DoorManager : MonoBehaviour
     {
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        // If the door is closed, see if enough enemies have been killed to open it
-        if(allEnemies.Length <= enemiesRemaining) {
-            open = true;
-            //openSprite.enabled = true;
-            //closedSprite.enabled = false;
-        } else { //TODO This piece may not be necessary. 
-            open = false;
-            //openSprite.enabled = false;
-            //closedSprite.enabled = true;
-        }
+        // If the door is not all the way open, see if enough enemies have been killed to open it
+        if(!open && allEnemies.Length <= enemiesRemaining ) 
+            StartCoroutine(OpenDoor());
+    }
 
+    IEnumerator OpenDoor() {
         // Play the door creak at the start of the door opening
-        if(open && doorAngle == 0) {
+        if(doorAngle == 0)
             doorCreak.Play();
+
+        // Open the door
+        //for(int i = 0; i <= angle; i++)
+        if(doorAngle <= angle){
+            if(clockwise) {
+                transform.Rotate(Vector3.down, -1);
+                doorAngle++;
+            } else {
+                transform.Rotate(Vector3.down, 1);
+                doorAngle++; 
+            }
+            if(doorAngle==angle)
+                open = true; // Update the flag
+            yield return null; // Pause here
         }
-
-        // If the door needs to be opened counter clockwise
-        if(!clockwise && open && doorAngle <= angle) {
-            //Debug.Log(GameObject.eulerAngles.x); TODO Figure out how to have a door be open or closed...
-            OpenCounterClockwise();
-            
-            
-        } 
-        // If the door needs to be opened clockwise
-        else if(clockwise && open && doorAngle <= angle) {
-            Debug.Log("There"); //TODO remove
-            OpenClockwise();
-        }
-
-    }
-
-    void OpenCounterClockwise() {
-        transform.Rotate(Vector3.down, 1);
-        doorAngle++; 
-    }
-
-    void OpenClockwise() {
-        transform.Rotate(Vector3.down, -1);
-        doorAngle++;
     }
 }
