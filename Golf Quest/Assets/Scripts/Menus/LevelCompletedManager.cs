@@ -10,7 +10,7 @@ public class LevelCompletedManager : MonoBehaviour {
 
     private Image bg;
     private GameObject panel;
-    public TextMeshProUGUI nameLabel, strokesLabel, parLabel;
+    public TextMeshProUGUI nameLabel, timeLabel, strokesLabel;
     public Button nextLevelBtn, exitBtn;
 
     private BallStats stats;
@@ -31,15 +31,18 @@ public class LevelCompletedManager : MonoBehaviour {
     public void LevelCompleted() {
 
         string name = SceneManager.GetActiveScene().name;
+        float time = stats.getElapsedTime();
         int strokes = stats.getStrokeCount();
 
         nameLabel.SetText(name);
+        timeLabel.SetText(TimeManager.formatTime(time));
         strokesLabel.SetText(strokes.ToString());
 
         bg.enabled = true;
         panel.SetActive(true);
 
-        LevelManager.Instance.CompleteLevel(name, strokes);
+        LevelManager.Instance.CompleteLevel(name, time, strokes);
+        TimeManager.Pause();
 
         if(nextLevelBtn.IsActive())
             EventSystem.current.SetSelectedGameObject(nextLevelBtn.gameObject);
