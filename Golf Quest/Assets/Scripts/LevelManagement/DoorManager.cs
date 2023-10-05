@@ -22,19 +22,6 @@ public class DoorManager : MonoBehaviour
 
         //levelCompletedManager = GameObject.Find("LevelCompletedMenu").GetComponent<LevelCompletedManager>();
         allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-/*
-        if(allEnemies.Length <= enemiesRemaining) {
-            open = true;
-            //openSprite.enabled = true;
-            //closedSprite.enabled = false;
-            
-        } else {
-            open = false;
-            //openSprite.enabled = false;
-            //closedSprite.enabled = true;
-        }
-
-*/
     }
 
     // Update is called once per frame
