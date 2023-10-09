@@ -26,6 +26,8 @@ public class BallStats : MonoBehaviour {
     private float startTime;
     public float speed;
 
+    [SerializeField] private AudioSource deathSound;
+
     void Start() {
 
         currHealth = maxHealth;
@@ -62,7 +64,7 @@ public class BallStats : MonoBehaviour {
         currHealth = Mathf.Max(0, currHealth - damage);
 
         if(currHealth == 0) {
-
+            deathSound.Play();
             deathMenuBg.enabled = true;
             deathMenuPanel.SetActive(true);
             TimeManager.Pause();
