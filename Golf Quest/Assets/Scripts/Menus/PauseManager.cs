@@ -12,6 +12,7 @@ public class PauseManager : MonoBehaviour {
     private Image bg, levelCompleteMenu, deathMenu;
     private GameObject panel, resumeButton;
     private static bool paused;
+    [SerializeField] AudioSource pauseSFX;
 
     void Awake() {
 
@@ -38,6 +39,8 @@ public class PauseManager : MonoBehaviour {
     }
     
     public void Pause() {
+
+        pauseSFX.Play();
 
         if(levelCompleteMenu.IsActive() || deathMenu.IsActive())
             return;
