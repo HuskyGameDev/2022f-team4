@@ -22,8 +22,9 @@ public class TitleScreenManager : MonoBehaviour {
     public Page[] pages;
     public int currentPageIndex;
 
-    void Start() {
+    [SerializeField]private AudioSource buttonSound;
 
+    void Start() {
         input_Cancel = EventSystem.current.GetComponent<InputSystemUIInputModule>().actionsAsset.FindAction("UI/Cancel");
         ChangePage("TitlePage");
     }
@@ -78,6 +79,10 @@ public class TitleScreenManager : MonoBehaviour {
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
+    }
+
+    public void ButtonSound() {
+        buttonSound.Play();
     }
 
     public void setPageDefaultSelection(String pageName, GameObject newDefaultSelection) {

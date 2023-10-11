@@ -10,6 +10,10 @@ public class TrapSpike : MonoBehaviour
     [SerializeField]public bool startDeployed = false;
     private bool deployed = false, retracting = false, deploying = false;
 
+    [SerializeField]AudioSource deploySound;
+
+    [SerializeField]AudioSource retractSound;
+
     private void Start() {
         // Set start position
         if(!startDeployed) {
@@ -31,6 +35,7 @@ public class TrapSpike : MonoBehaviour
    }
 
     IEnumerator retract() {
+        retractSound.Play();
         Debug.Log("Retract at " + Time.time);
         retracting = true;
         transform.Translate(0, -0.8f, 0);
@@ -42,6 +47,7 @@ public class TrapSpike : MonoBehaviour
     }
 
     IEnumerator deploy() {
+        deploySound.Play();
         Debug.Log("Deploy at " + Time.time);
         deploying = true;
         transform.Translate(0, 0.8f, 0);

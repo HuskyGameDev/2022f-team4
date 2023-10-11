@@ -39,7 +39,6 @@ public class PauseManager : MonoBehaviour {
     }
     
     public void Pause() {
-
         pauseSFX.Play();
 
         if(levelCompleteMenu.IsActive() || deathMenu.IsActive())
@@ -56,6 +55,7 @@ public class PauseManager : MonoBehaviour {
     }
 
     public void Resume() {
+        //pauseSFX.Play();
 
         if (bg == null || panel == null)
             return;
