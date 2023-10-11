@@ -11,6 +11,8 @@ public class ExitHoleManager : MonoBehaviour {
 
     private LevelCompletedManager levelCompletedManager;
     private GameObject[] allEnemies;
+    
+    [SerializeField]private AudioSource success;
 
     void Start() {
 
@@ -50,6 +52,8 @@ public class ExitHoleManager : MonoBehaviour {
 
         if(!isOpen())
             return;
+
+        success.Play();    
 
         levelCompletedManager.LevelCompleted();
     }

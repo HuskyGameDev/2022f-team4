@@ -11851,12 +11851,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1857008032988417927, guid: 38d249f8374b5ff449780edcbdd9ae55, type: 3}
+      propertyPath: success
+      value: 
+      objectReference: {fileID: 1788668148}
     - target: {fileID: 1857008032988417977, guid: 38d249f8374b5ff449780edcbdd9ae55, type: 3}
       propertyPath: m_Name
       value: ExitHole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38d249f8374b5ff449780edcbdd9ae55, type: 3}
+--- !u!82 &1788668148 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4432570899252756433, guid: 38d249f8374b5ff449780edcbdd9ae55, type: 3}
+  m_PrefabInstance: {fileID: 1788668147}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1810554346
 GameObject:
   m_ObjectHideFlags: 0

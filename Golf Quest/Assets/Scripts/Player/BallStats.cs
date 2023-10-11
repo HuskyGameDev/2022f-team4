@@ -24,15 +24,23 @@ public class BallStats : MonoBehaviour {
 
     private int currHealth, strokeCount;
     private float startTime;
+    public float speed;
+
+    [SerializeField] private AudioSource deathSound;
 
     void Start() {
 
         currHealth = maxHealth;
         startTime = Time.time;
 
+        StartCoroutine(CalcSpeed());
+
         deathMenuBg = GameObject.Find("DeathMenu").GetComponent<Image>();
         deathMenuPanel = deathMenuBg.transform.GetChild(0).gameObject;
         restartButton = deathMenuPanel.transform.GetChild(1).gameObject;
+
+
+        
     }
 
     void Update() {
@@ -56,7 +64,7 @@ public class BallStats : MonoBehaviour {
         currHealth = Mathf.Max(0, currHealth - damage);
 
         if(currHealth == 0) {
-
+            deathSound.Play();
             deathMenuBg.enabled = true;
             deathMenuPanel.SetActive(true);
             TimeManager.Pause();
@@ -67,7 +75,20 @@ public class BallStats : MonoBehaviour {
     public void addStroke() { strokeCount++; }
 
     public int getMaxHealth() { return maxHealth; }
-    public int getCurrHealth() { return currHealth; }    
+    public int getCurrHealth() { return currHealth; }
     public int getStrokeCount() { return strokeCount; }
     public float getElapsedTime() { return Time.time - startTime; }
+
+    IEnumerator CalcSpeed(){
+        bool isPlaying = true;
+
+        while(isPlaying)
+        {
+            Vector3 prevPos = transform.position;
+
+            yield return new WaitForFixedUpdate();
+
+            speed = Mathf.RoundToInt(Vector3.Distance(transform.position, prevPos) / Time.fixedDeltaTime);
+        }
+    }
 }
