@@ -1,6 +1,6 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(BallStats), typeof(Rigidbody))]
@@ -11,7 +11,6 @@ public class BallMovement : MonoBehaviour {
     private BallStats ballStats;
     private PlayerInput input;
     private InputAction input_Aim, input_Launch, input_Cancel;
-    public AudioSource tickSource;
 
     private Plane plane;
 
@@ -24,18 +23,18 @@ public class BallMovement : MonoBehaviour {
     [Header("Launch Properties")]
     [SerializeField]
     private float magnitudeMax = 20.0f, magnitudeScalar = 100.0f, movingThreshold = 0.1f;
-
+    [SerializeField]
+    private SpriteRenderer readySprite; // Displays when they player is ready to be charged and launched again.
 
     // Start is called before the first frame update
     void Start()
     {
-        tickSource = GetComponent<AudioSource> ();
         rigidBody = GetComponent<Rigidbody>();
         pullLine = GetComponentInChildren<LineRenderer>();
         ballStats = GetComponent<BallStats>();
         input = GetComponent<PlayerInput>();
         pullLine.enabled = false; 
-
+        readySprite.enabled = false;
 
         input_Aim = input.actions.FindAction("Aim");
         input_Launch = input.actions.FindAction("Launch");
@@ -51,8 +50,9 @@ public class BallMovement : MonoBehaviour {
 
             ResetLaunch();
         };
+        
         input_Launch.performed += inputContext => {
-
+            
             if (this == null || !aiming || moving || inputContext.action.bindings[inputContext.action.GetBindingIndexForControl(inputContext.control)].effectivePath.Contains("Mouse"))
                 return;
 
@@ -61,7 +61,7 @@ public class BallMovement : MonoBehaviour {
             else
                 Launch();
         };
-
+        
         input_Launch.started += inputContext => {
 
             if (this == null || moving || (input != null && input.currentControlScheme.Equals("Gamepad")))                           // Only allow aiming if ball has stopped moving
@@ -110,6 +110,7 @@ public class BallMovement : MonoBehaviour {
             rigidBody.velocity = Vector3.zero;
         }
 
+        readySprite.enabled = !moving;
     }
 
     private void PointerInput() {
@@ -196,7 +197,7 @@ public class BallMovement : MonoBehaviour {
         pullLine.enabled = false;
     }
 
-    private Vector3 screenToWorld(Vector3 vec)  {
+    private Vector3 screenToWorld(Vector3 vec)  {   
         vec.z = Camera.main.nearClipPlane;
         return Camera.main.ScreenToWorldPoint(vec);
     }
@@ -211,7 +212,7 @@ public class BallMovement : MonoBehaviour {
 
         if(moving)
             return rigidBody.velocity.normalized;
-        else
+        else 
             return (aimStartPos - aimCurrPos).normalized;
     }
 
@@ -222,12 +223,4 @@ public class BallMovement : MonoBehaviour {
     }
 
     public float getMovingThreshold() { return movingThreshold; }
-
-    public float getSpeed() { 
-        var vel = GetComponent<Rigidbody>().velocity;      //to get a Vector3 representation of the velocity
-        float speed = vel.magnitude;             // to get magnitude
-        return speed;
-         }
-
-
 }

@@ -21,7 +21,6 @@ public class LevelManager : MonoBehaviour {
     [SerializeField]
     private Level[] levels;
     private Button[] levelBtns = new Button[0];
-    private int[] Par;
 
     void Awake() {
         
@@ -53,13 +52,13 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
-    public void CompleteLevel(string sceneName, int strokes) {
+    public void CompleteLevel(string sceneName, float time, int strokes) {
 
         for (int i = 0; i < levels.Length; i++) {
 
             if(levels[i].getName().Equals(sceneName)) {
 
-                levels[i].completeLevel(strokes);
+                levels[i].completeLevel(time, strokes);
 
                 if(i < levels.Length - 1)
                     levels[i + 1].unlock();
@@ -102,11 +101,6 @@ public class LevelManager : MonoBehaviour {
 
     private void PopulateLevelList() {
 
-        Par = new int[levels.Length];
-        for (int i = 0; i < Par.Length; i++) {
-            Par[i] = 5;
-        }
-
         if (levelBtns.Length != levels.Length) {
             foreach (Transform btn in levelList.GetComponentsInChildren<Transform>())
                 if(btn.name.Contains("Button"))
@@ -128,8 +122,8 @@ public class LevelManager : MonoBehaviour {
 
             btn.name = lvl.getName() + " Button";
             btn.transform.Find("LevelName").GetComponent<TextMeshProUGUI>().SetText(lvl.getName());
-            btn.transform.Find("Par").GetComponent<TextMeshProUGUI>().SetText("Par: " + Par[i]);
-            btn.transform.Find("BestStrokes").GetComponent<TextMeshProUGUI>().SetText("Strokes:\n" + lvl.getBestStrokes().ToString());
+            btn.transform.Find("BestTime").GetComponent<TextMeshProUGUI>().SetText(TimeManager.formatTime(lvl.getBestTime()));
+            btn.transform.Find("BestStrokes").GetComponent<TextMeshProUGUI>().SetText(lvl.getBestStrokes().ToString());
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(delegate { lvl.load(); });
 
