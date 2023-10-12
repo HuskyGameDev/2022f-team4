@@ -13,12 +13,13 @@ public class BallMovement : MonoBehaviour {
     private InputAction input_Aim, input_Launch, input_Cancel;
 
     private Plane plane;
-
+    public float speed;
     private Vector3 aimStartPos;   // Stores the position of where the mouse drag was started.
     private Vector3 aimCurrPos;    // Stores the position of the mouse during the drag.
     private bool aiming;          // Stores whether or not the player is currently aiming.
     private bool moving;
     private bool launching;
+    public Transform sprite;
 
     [Header("Launch Properties")]
     [SerializeField]
@@ -39,6 +40,7 @@ public class BallMovement : MonoBehaviour {
         input_Aim = input.actions.FindAction("Aim");
         input_Launch = input.actions.FindAction("Launch");
         input_Cancel = input.actions.FindAction("Cancel");
+        StartCoroutine(CalcSpeed());
 
         input_Cancel.performed += inputContext => {
 
@@ -93,9 +95,13 @@ public class BallMovement : MonoBehaviour {
             GamepadInput();
 
         if(aiming) {
+            sprite.GetComponent<Animator>().SetBool("squash",true);
             pullLine.enabled = true;
             pullLine.SetPositions(new Vector3[] {aimStartPos, aimCurrPos});
+
         } else {
+            sprite.GetComponent<Animator>().SetBool("squash",false);
+            sprite.GetComponent<Animator>().SetFloat("speed",speed);
             pullLine.enabled = false;
         }
 
@@ -223,4 +229,18 @@ public class BallMovement : MonoBehaviour {
     }
 
     public float getMovingThreshold() { return movingThreshold; }
+
+    IEnumerator CalcSpeed(){
+        bool isPlaying = true;
+
+        while(isPlaying)
+        {
+            Vector3 prevPos = transform.position;
+
+            yield return new WaitForFixedUpdate();
+
+            speed = Mathf.RoundToInt(Vector3.Distance(transform.position, prevPos) / Time.fixedDeltaTime);
+
+        }
+    }
 }
