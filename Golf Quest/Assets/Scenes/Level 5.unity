@@ -10916,7 +10916,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1899871339, guid: a27640f4991db8f41971cc67816f978f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4995570462079790778, guid: a27640f4991db8f41971cc67816f978f, type: 3}
       propertyPath: m_Camera
