@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Level {
 
     public string sceneName;
-    private float bestTime;
+    //private float bestTime;
     private int bestStrokes;
     private bool unlocked, complete;    
 
@@ -17,15 +17,15 @@ public class Level {
 
     public void unlock() { unlocked = true; }
 
-    public void completeLevel(float time, int strokes) {
+    public void completeLevel(int strokes) {
 
         if(!complete) {
 
-            bestTime = time;
+            //bestTime = time;
             bestStrokes = strokes;
         } else {
 
-            bestTime = Mathf.Min(bestTime, time);
+            //bestTime = Mathf.Min(bestTime, time);
             bestStrokes = (int) Mathf.Min(bestStrokes, strokes);
         }
 
@@ -33,7 +33,7 @@ public class Level {
     }
 
     public string getName() { return sceneName; }
-    public float getBestTime() { return bestTime; }
+    //public float getBestTime() { return bestTime; }
     public int getBestStrokes() { return bestStrokes; }
     public bool isUnlocked() { return unlocked; }
     public bool isComplete() { return complete; }
