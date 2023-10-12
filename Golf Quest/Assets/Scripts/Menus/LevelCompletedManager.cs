@@ -15,6 +15,8 @@ public class LevelCompletedManager : MonoBehaviour {
 
     private BallStats stats;
 
+    private static bool completed = false;
+
     void Start() {
 
         bg = GetComponent<Image>();
@@ -43,6 +45,7 @@ public class LevelCompletedManager : MonoBehaviour {
 
         LevelManager.Instance.CompleteLevel(name, time, strokes);
         TimeManager.Pause();
+        completed = true;
 
         if(nextLevelBtn.IsActive())
             EventSystem.current.SetSelectedGameObject(nextLevelBtn.gameObject);
@@ -51,7 +54,7 @@ public class LevelCompletedManager : MonoBehaviour {
     }
 
     public void NextLevel() {
-
+        completed = false;
         for (int i = 0; i < LevelManager.Instance.getLevels().Length - 1; i++) {
 
             Level[] levels = LevelManager.Instance.getLevels();
@@ -66,4 +69,7 @@ public class LevelCompletedManager : MonoBehaviour {
         bg.enabled = false;
         panel.SetActive(false);
     }
+
+    public static bool isCompleted() { return completed; }
+    public static void setCompleted(bool b) { completed = b; }
 }
