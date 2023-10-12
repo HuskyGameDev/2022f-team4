@@ -10,10 +10,12 @@ public class LevelCompletedManager : MonoBehaviour {
 
     private Image bg;
     private GameObject panel;
-    public TextMeshProUGUI nameLabel, timeLabel, strokesLabel;
+    public TextMeshProUGUI nameLabel, strokesLabel;
     public Button nextLevelBtn, exitBtn;
 
     private BallStats stats;
+
+    private static bool completed = false;
 
     void Start() {
 
@@ -31,18 +33,19 @@ public class LevelCompletedManager : MonoBehaviour {
     public void LevelCompleted() {
 
         string name = SceneManager.GetActiveScene().name;
-        float time = stats.getElapsedTime();
+        //float time = stats.getElapsedTime();
         int strokes = stats.getStrokeCount();
 
         nameLabel.SetText(name);
-        timeLabel.SetText(TimeManager.formatTime(time));
+        //timeLabel.SetText(TimeManager.formatTime(time));
         strokesLabel.SetText(strokes.ToString());
 
         bg.enabled = true;
         panel.SetActive(true);
 
-        LevelManager.Instance.CompleteLevel(name, time, strokes);
+        LevelManager.Instance.CompleteLevel(name, strokes);
         TimeManager.Pause();
+        completed = true;
 
         if(nextLevelBtn.IsActive())
             EventSystem.current.SetSelectedGameObject(nextLevelBtn.gameObject);
@@ -51,7 +54,7 @@ public class LevelCompletedManager : MonoBehaviour {
     }
 
     public void NextLevel() {
-
+        completed = false;
         for (int i = 0; i < LevelManager.Instance.getLevels().Length - 1; i++) {
 
             Level[] levels = LevelManager.Instance.getLevels();
@@ -66,4 +69,7 @@ public class LevelCompletedManager : MonoBehaviour {
         bg.enabled = false;
         panel.SetActive(false);
     }
+
+    public static bool isCompleted() { return completed; }
+    public static void setCompleted(bool b) { completed = b; }
 }

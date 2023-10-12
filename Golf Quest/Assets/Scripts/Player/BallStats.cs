@@ -24,7 +24,6 @@ public class BallStats : MonoBehaviour {
 
     private int currHealth, strokeCount;
     private float startTime;
-    public float speed;
 
     [SerializeField] private AudioSource deathSound;
 
@@ -32,8 +31,6 @@ public class BallStats : MonoBehaviour {
 
         currHealth = maxHealth;
         startTime = Time.time;
-
-        StartCoroutine(CalcSpeed());
 
         deathMenuBg = GameObject.Find("DeathMenu").GetComponent<Image>();
         deathMenuPanel = deathMenuBg.transform.GetChild(0).gameObject;
@@ -79,16 +76,4 @@ public class BallStats : MonoBehaviour {
     public int getStrokeCount() { return strokeCount; }
     public float getElapsedTime() { return Time.time - startTime; }
 
-    IEnumerator CalcSpeed(){
-        bool isPlaying = true;
-
-        while(isPlaying)
-        {
-            Vector3 prevPos = transform.position;
-
-            yield return new WaitForFixedUpdate();
-
-            speed = Mathf.RoundToInt(Vector3.Distance(transform.position, prevPos) / Time.fixedDeltaTime);
-        }
-    }
 }

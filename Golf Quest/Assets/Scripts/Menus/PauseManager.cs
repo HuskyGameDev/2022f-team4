@@ -67,7 +67,7 @@ public class PauseManager : MonoBehaviour {
     }
 
     public void Restart() {
-
+        LevelCompletedManager.setCompleted(false);
         TimeManager.Resume();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
