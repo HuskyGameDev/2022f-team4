@@ -31,7 +31,7 @@ public class BallStats : MonoBehaviour {
 
     [SerializeField] private AudioClip[] wallHitSounds;
     [SerializeField] private AudioClip[] wallHitSoundSoft;
-    [SerializeField] private AudioClip[] woodHitSoundSoft;
+    [SerializeField] private AudioClip[] woodHitSound;
 
 
     void Start() {
@@ -64,7 +64,7 @@ public class BallStats : MonoBehaviour {
     void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Wood")) {
             Debug.Log("Trigger Wood Hit SFX");
-            audioSource.clip = woodHitSoundSoft[Random.Range(0, woodHitSoundSoft.Length)];
+            audioSource.clip = woodHitSound[Random.Range(0, woodHitSound.Length)];
             //deathSound.clip = wallHitSounds[Random.Range(0, wallHitSounds.Length)];
             audioSource.Play();
         }

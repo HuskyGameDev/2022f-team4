@@ -653,7 +653,21 @@ MonoBehaviour:
   strokeLabel: {fileID: 0}
   healthLabel: {fileID: 0}
   maxHealth: 1
-  deathSound: {fileID: 3634437994190740620}
+  deathSound: {fileID: 8300000, guid: 630afd7907edb5848b07a8367a0a169c, type: 3}
+  wallHitSounds:
+  - {fileID: 8300000, guid: a0cfdc9fb0351644795b5cded9ffaba9, type: 3}
+  - {fileID: 8300000, guid: 5347f7a518656474b9c351f1c870896c, type: 3}
+  - {fileID: 8300000, guid: 99be716f22167354aaa4e7bcca0a1bb6, type: 3}
+  wallHitSoundSoft:
+  - {fileID: 8300000, guid: 4bc9706c668010b45a56fd770328dbe0, type: 3}
+  - {fileID: 8300000, guid: 94c83d7c885597e47960c6b0df4f0e0e, type: 3}
+  - {fileID: 8300000, guid: c467b27d4744b7b4f8985ef7fc7ec92f, type: 3}
+  - {fileID: 8300000, guid: ebe9c296c891cc24fae8c688c26e9801, type: 3}
+  woodHitSound:
+  - {fileID: 8300000, guid: 2e211d8288b68304592ed12428062c75, type: 3}
+  - {fileID: 8300000, guid: cbe8cee355101764dbaffd9051c00312, type: 3}
+  - {fileID: 8300000, guid: f86a603db5ce8b749a0c0e0020997e9f, type: 3}
+  - {fileID: 8300000, guid: 78650965e266af84a9dd71f77423518f, type: 3}
 --- !u!82 &3634437994190740620
 AudioSource:
   m_ObjectHideFlags: 0
