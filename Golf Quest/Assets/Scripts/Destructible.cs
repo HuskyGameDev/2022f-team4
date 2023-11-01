@@ -46,7 +46,7 @@ public class Destructible : MonoBehaviour {
             else
                 ballStats.takeDamage(dmgOnHit);
 
-        } else if (other.CompareTag("Wall")) {
+        } else if (other.CompareTag("Wall") || other.CompareTag("Wood")) {
 
             currHealth = Mathf.Max(0, currHealth - dmgOnWallHit);
         }

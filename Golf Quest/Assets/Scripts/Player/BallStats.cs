@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
+[RequireComponent(typeof(AudioSource))]
 public class BallStats : MonoBehaviour {
 
     [Header("InGame Stats UI Components")]
@@ -25,12 +26,20 @@ public class BallStats : MonoBehaviour {
     private int currHealth, strokeCount;
     private float startTime;
 
-    [SerializeField] private AudioSource deathSound;
+    [SerializeField] AudioClip deathSound;
+    private AudioSource audioSource;
+
+    [SerializeField] private AudioClip[] wallHitSounds;
+    [SerializeField] private AudioClip[] wallHitSoundSoft;
+    [SerializeField] private AudioClip[] woodHitSoundSoft;
+
 
     void Start() {
 
         currHealth = maxHealth;
         startTime = Time.time;
+
+        audioSource = GetComponent<AudioSource>();
 
         deathMenuBg = GameObject.Find("DeathMenu").GetComponent<Image>();
         deathMenuPanel = deathMenuBg.transform.GetChild(0).gameObject;
@@ -52,6 +61,24 @@ public class BallStats : MonoBehaviour {
             healthLabel.SetText(getCurrHealth() + "/" + getMaxHealth());
     }
 
+    void OnCollisionEnter(Collision other) {
+        if (other.gameObject.CompareTag("Wood")) {
+            Debug.Log("Trigger Wood Hit SFX");
+            audioSource.clip = woodHitSoundSoft[Random.Range(0, woodHitSoundSoft.Length)];
+            //deathSound.clip = wallHitSounds[Random.Range(0, wallHitSounds.Length)];
+            audioSource.Play();
+        }
+    }
+    void OnTriggerEnter(Collider other) {
+
+        if (other.gameObject.CompareTag("Wall(for SFX)")) {
+            Debug.Log("Start Wall Hit SFX");
+            audioSource.clip = wallHitSoundSoft[Random.Range(0, wallHitSoundSoft.Length)];
+            //deathSound.clip = wallHitSounds[Random.Range(0, wallHitSounds.Length)];
+            audioSource.Play();
+        }
+    }
+
     //////////////////////////////
     // Public Setters & Getters //
     //////////////////////////////
@@ -61,7 +88,8 @@ public class BallStats : MonoBehaviour {
         currHealth = Mathf.Max(0, currHealth - damage);
 
         if(currHealth == 0) {
-            deathSound.Play();
+            audioSource.clip = deathSound;
+            audioSource.Play();
             deathMenuBg.enabled = true;
             deathMenuPanel.SetActive(true);
             TimeManager.Pause();
