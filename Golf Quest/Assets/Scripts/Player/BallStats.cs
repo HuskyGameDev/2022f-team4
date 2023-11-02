@@ -32,6 +32,7 @@ public class BallStats : MonoBehaviour {
     [SerializeField] private AudioClip[] wallHitSounds;
     [SerializeField] private AudioClip[] wallHitSoundSoft;
     [SerializeField] private AudioClip[] woodHitSound;
+    private Rigidbody rb;
 
 
     void Start() {
@@ -40,6 +41,7 @@ public class BallStats : MonoBehaviour {
         startTime = Time.time;
 
         audioSource = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody> ();
 
         deathMenuBg = GameObject.Find("DeathMenu").GetComponent<Image>();
         deathMenuPanel = deathMenuBg.transform.GetChild(0).gameObject;
@@ -63,18 +65,22 @@ public class BallStats : MonoBehaviour {
 
     void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Wood")) {
-            Debug.Log("Trigger Wood Hit SFX");
+            //Debug.Log("Trigger Wood Hit SFX");
             audioSource.clip = woodHitSound[Random.Range(0, woodHitSound.Length)];
-            //deathSound.clip = wallHitSounds[Random.Range(0, wallHitSounds.Length)];
             audioSource.Play();
         }
     }
     void OnTriggerEnter(Collider other) {
 
         if (other.gameObject.CompareTag("Wall(for SFX)")) {
-            Debug.Log("Start Wall Hit SFX");
-            audioSource.clip = wallHitSoundSoft[Random.Range(0, wallHitSoundSoft.Length)];
-            //deathSound.clip = wallHitSounds[Random.Range(0, wallHitSounds.Length)];
+            //Debug.Log("Start Wall Hit SFX");
+            Debug.Log(rb.velocity.magnitude);
+            if(rb.velocity.magnitude < 10) {
+                audioSource.clip = wallHitSoundSoft[Random.Range(0, wallHitSoundSoft.Length)];
+            }
+            else {
+                audioSource.clip = wallHitSounds[Random.Range(0, wallHitSounds.Length)];
+            }
             audioSource.Play();
         }
     }
