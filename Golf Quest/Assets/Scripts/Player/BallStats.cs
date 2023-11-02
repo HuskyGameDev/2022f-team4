@@ -74,7 +74,7 @@ public class BallStats : MonoBehaviour {
 
         if (other.gameObject.CompareTag("Wall(for SFX)")) {
             //Debug.Log("Start Wall Hit SFX");
-            Debug.Log(rb.velocity.magnitude);
+            //Debug.Log(rb.velocity.magnitude);
             if(rb.velocity.magnitude < 10) {
                 audioSource.clip = wallHitSoundSoft[Random.Range(0, wallHitSoundSoft.Length)];
             }
