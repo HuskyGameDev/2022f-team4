@@ -26,8 +26,8 @@ public class BallStats : MonoBehaviour {
     private int currHealth, strokeCount;
     private float startTime;
 
-    [SerializeField] AudioClip deathSound;
-    private AudioSource audioSource;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private AudioClip[] wallHitSounds;
     [SerializeField] private AudioClip[] wallHitSoundSoft;
@@ -40,7 +40,6 @@ public class BallStats : MonoBehaviour {
         currHealth = maxHealth;
         startTime = Time.time;
 
-        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody> ();
 
         deathMenuBg = GameObject.Find("DeathMenu").GetComponent<Image>();

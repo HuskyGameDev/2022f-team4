@@ -58,11 +58,12 @@ public class Destructible : MonoBehaviour {
             
             // Play destruction animation
             if(audioSource != null){
-                //Debug.Log("Play Destructable Death SFX");
+                Debug.Log("Play Destructable Death SFX");
                 transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<Collider>().enabled = false;
                 audioSource.clip = destroySound;
                 audioSource.Play();
+                Debug.Log("Sound should have played");
                 Destroy(gameObject, destroySound.length);
             }
             // anim.SetTrigger("Break");                                       //Needs to be fixed; will be used to trigger the breaking / death animation
