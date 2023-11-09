@@ -26,6 +26,11 @@ public class BallMovement : MonoBehaviour {
     private float magnitudeMax = 20.0f, magnitudeScalar = 100.0f, movingThreshold = 0.1f;
     [SerializeField]
     private SpriteRenderer readySprite; // Displays when they player is ready to be charged and launched again.
+    [Header("Sound Components")]
+    [SerializeField] private AudioSource uiAudioSource;
+    [SerializeField] private AudioClip launchSound;
+    [SerializeField] private AudioClip chargeSound;
+    private bool chargeSoundPlayed;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +41,7 @@ public class BallMovement : MonoBehaviour {
         input = GetComponent<PlayerInput>();
         pullLine.enabled = false; 
         readySprite.enabled = false;
+        chargeSoundPlayed = false;
 
         input_Aim = input.actions.FindAction("Aim");
         input_Launch = input.actions.FindAction("Launch");
@@ -92,6 +98,9 @@ public class BallMovement : MonoBehaviour {
         if (LevelCompletedManager.isCompleted())
             return;
 
+        if (TutorialManager.isInTutorial())
+            return;
+
         if (input.currentControlScheme.Equals("Keyboard&Mouse") || input.currentControlScheme.Equals("Touch"))
             PointerInput();
         else if (input.currentControlScheme.Equals("Gamepad"))
@@ -101,7 +110,11 @@ public class BallMovement : MonoBehaviour {
             sprite.GetComponent<Animator>().SetBool("squash",true);
             pullLine.enabled = true;
             pullLine.SetPositions(new Vector3[] {aimStartPos, aimCurrPos});
-
+            if(!uiAudioSource.isPlaying && !chargeSoundPlayed) {
+                chargeSoundPlayed = true;
+                uiAudioSource.clip = chargeSound;
+                uiAudioSource.Play();
+            }
         } else {
             sprite.GetComponent<Animator>().SetBool("squash",false);
             sprite.GetComponent<Animator>().SetFloat("speed",speed);
@@ -188,6 +201,8 @@ public class BallMovement : MonoBehaviour {
         Vector3 launchVector = aimCurrPos - aimStartPos;                                        // Calculate the desired launch vector
         float magnitude = Mathf.Min(launchVector.magnitude * magnitudeScalar, magnitudeMax);    // Scale the magnitude and ensure it is capped at a maximum.
         Vector3 cappedVector = launchVector.normalized * magnitude * -1.0f;                     // Calculate the capped vector with the adjusted magnitude.
+        uiAudioSource.clip = launchSound;
+        uiAudioSource.Play();
 
         rigidBody.AddForce(cappedVector, ForceMode.Impulse);
         ResetLaunch();
@@ -204,6 +219,7 @@ public class BallMovement : MonoBehaviour {
         rotation = Vector2.zero;
         distance = 1.0f;
         pullLine.enabled = false;
+        chargeSoundPlayed = false;
     }
 
     private Vector3 screenToWorld(Vector3 vec)  {   

@@ -17,16 +17,18 @@ public class ProjectileAttackType : MonoBehaviour, EnemyAttackType
     public IEnumerator Attack()
     {
         //Debug.Log("Turret Attack!");
+        // As long as the sprite renderer is enabled, enemy can attack
+        if(transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().enabled) {
+            Projectile projectile = Instantiate(projectilePrefab, transform, false).GetComponent<Projectile>();
+            projectile.transform.Translate(Vector3.right * 0.6f);
+            projectile.transform.SetParent(null);
 
-        Projectile projectile = Instantiate(projectilePrefab, transform, false).GetComponent<Projectile>();
-        projectile.transform.Translate(Vector3.right * 0.6f);
-        projectile.transform.SetParent(null);
+            if (projectileSpeed > 0)
+            {
+                projectile.Speed = projectileSpeed;
+            }
 
-        if (projectileSpeed > 0)
-        {
-            projectile.Speed = projectileSpeed;
+            yield return new WaitForSeconds(0.1f);
         }
-
-        yield return new WaitForSeconds(0.1f);
     }
 }

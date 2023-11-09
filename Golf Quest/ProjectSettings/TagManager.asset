@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - Enemy
+  - Wood
+  - Wall(for SFX)
   layers:
   - Default
   - TransparentFX
