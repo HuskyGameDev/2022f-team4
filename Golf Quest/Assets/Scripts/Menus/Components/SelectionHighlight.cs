@@ -9,11 +9,13 @@ public class SelectionHighlight : MonoBehaviour {
 
     private EventSystem eventSystem;
     private GameObject currSelection;
+    private AudioSource audioSource;
 
     void Start() {
 
         eventSystem = GetComponent<EventSystem>();
         currSelection = eventSystem.currentSelectedGameObject;
+        audioSource = GetComponent<AudioSource>();
         enable(currSelection);
     }
 
@@ -46,6 +48,7 @@ public class SelectionHighlight : MonoBehaviour {
             return;
 
         Outline outline = selection.GetComponent<Outline>();
+        audioSource.Play();
 
         if(outline == null)
             return;
