@@ -98,6 +98,9 @@ public class BallMovement : MonoBehaviour {
         if (LevelCompletedManager.isCompleted())
             return;
 
+        if (TutorialManager.isInTutorial())
+            return;
+
         if (input.currentControlScheme.Equals("Keyboard&Mouse") || input.currentControlScheme.Equals("Touch"))
             PointerInput();
         else if (input.currentControlScheme.Equals("Gamepad"))

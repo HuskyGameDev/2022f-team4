@@ -47,10 +47,12 @@ public class PauseManager : MonoBehaviour {
         if (bg == null || panel == null)
             return;
 
+        paused = true;
+
         bg.enabled = true;
         panel.SetActive(true);
         TimeManager.Pause();
-        paused = true;
+        
         EventSystem.current.SetSelectedGameObject(resumeButton);
     }
 
