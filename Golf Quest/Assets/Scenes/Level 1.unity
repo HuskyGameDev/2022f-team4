@@ -8331,6 +8331,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 4394780222554818340, guid: 4bb400a6b7201de4fbd153802c0adf1a, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 4394780222554818342, guid: 4bb400a6b7201de4fbd153802c0adf1a, type: 3}
       propertyPath: zoomCap.y
       value: 24

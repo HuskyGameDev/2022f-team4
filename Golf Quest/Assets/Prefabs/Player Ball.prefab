@@ -658,7 +658,7 @@ MonoBehaviour:
   healthLabel: {fileID: 0}
   maxHealth: 1
   deathSound: {fileID: 8300000, guid: 630afd7907edb5848b07a8367a0a169c, type: 3}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 3634437994190740620}
   wallHitSounds:
   - {fileID: 8300000, guid: a0cfdc9fb0351644795b5cded9ffaba9, type: 3}
   - {fileID: 8300000, guid: 5347f7a518656474b9c351f1c870896c, type: 3}

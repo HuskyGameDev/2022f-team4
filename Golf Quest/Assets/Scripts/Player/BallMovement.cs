@@ -107,13 +107,11 @@ public class BallMovement : MonoBehaviour {
             sprite.GetComponent<Animator>().SetBool("squash",true);
             pullLine.enabled = true;
             pullLine.SetPositions(new Vector3[] {aimStartPos, aimCurrPos});
-           // playChargeSound();private void playChargeSound(){
             if(!uiAudioSource.isPlaying && !chargeSoundPlayed) {
                 chargeSoundPlayed = true;
                 uiAudioSource.clip = chargeSound;
                 uiAudioSource.Play();
             }
-    //}
         } else {
             sprite.GetComponent<Animator>().SetBool("squash",false);
             sprite.GetComponent<Animator>().SetFloat("speed",speed);
