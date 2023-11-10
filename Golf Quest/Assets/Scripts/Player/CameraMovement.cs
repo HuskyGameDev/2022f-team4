@@ -28,7 +28,7 @@ public class CameraMovement : MonoBehaviour
         //Start the camera over the hole
         hole = GameObject.Find("ExitHole").transform;
         this.transform.position =  new Vector3(hole.position.x, this.transform.position.y, hole.position.z);
-        //StartCoroutine(delayStart());
+        StartCoroutine(delayStart());
     }
 
     void Update() {
@@ -37,7 +37,7 @@ public class CameraMovement : MonoBehaviour
             CameraZoom();
         if(hasStarted)
             CameraFollow();
-        else if (!TimeManager.isPaused())   
+        else   
             StartCoroutine(delayStart());
 
         

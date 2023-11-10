@@ -31,8 +31,6 @@ public class TimeManager : MonoBehaviour {
     }
 
     public static void Pause() { pauseFactor = 0; }
-
-    public static bool isPaused() { if(pauseFactor == 0) return true; else return false; }
     public static void Resume() { pauseFactor = 1; }
 
     public static string formatTime(float elapsedTime) {
