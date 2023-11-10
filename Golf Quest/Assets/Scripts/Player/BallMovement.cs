@@ -92,15 +92,13 @@ public class BallMovement : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        if (PauseManager.isPaused())
+        bool ip = PauseManager.isPaused();
+        bool ic = LevelCompletedManager.isCompleted();
+        bool it = TutorialManager.isInTutorial();
+
+        if (ip || ic || it)
             return;
         
-        if (LevelCompletedManager.isCompleted())
-            return;
-
-        if (TutorialManager.isInTutorial())
-            return;
-
         if (input.currentControlScheme.Equals("Keyboard&Mouse") || input.currentControlScheme.Equals("Touch"))
             PointerInput();
         else if (input.currentControlScheme.Equals("Gamepad"))
@@ -197,6 +195,15 @@ public class BallMovement : MonoBehaviour {
     }
 
     private void Launch() {
+
+        bool ip = PauseManager.isPaused();
+        bool ic = LevelCompletedManager.isCompleted();
+        bool it = TutorialManager.isInTutorial();
+
+        if (ip || ic || it) {
+            ResetLaunch();
+            return;
+        }
 
         Vector3 launchVector = aimCurrPos - aimStartPos;                                        // Calculate the desired launch vector
         float magnitude = Mathf.Min(launchVector.magnitude * magnitudeScalar, magnitudeMax);    // Scale the magnitude and ensure it is capped at a maximum.
