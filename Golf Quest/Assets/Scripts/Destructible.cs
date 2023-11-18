@@ -17,13 +17,12 @@ public class Destructible : MonoBehaviour {
     private Animator anim;
 
     private int currHealth;
-    private AudioSource audioSource;
-    [SerializeField] AudioClip destroySound;
+    [SerializeField] private AudioSource audioSource;
+    //[SerializeField] private AudioClip destroySound;
 
     void Start() {
         anim = GetComponent<Animator>();
         currHealth = maxHealth;
-        audioSource = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other) {
@@ -58,13 +57,13 @@ public class Destructible : MonoBehaviour {
             
             // Play destruction animation
             if(audioSource != null){
-                Debug.Log("Play Destructable Death SFX");
                 transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<Collider>().enabled = false;
-                audioSource.clip = destroySound;
+                //audioSource.clip = destroySound;
+                Debug.Log("Play Destructable Death SFX");
                 audioSource.Play();
                 Debug.Log("Sound should have played");
-                Destroy(gameObject, destroySound.length);
+                Destroy(gameObject, 1.0f);
             }
             // anim.SetTrigger("Break");                                       //Needs to be fixed; will be used to trigger the breaking / death animation
             Destroy(gameObject);
