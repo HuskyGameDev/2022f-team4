@@ -18,11 +18,12 @@ public class Destructible : MonoBehaviour {
 
     private int currHealth;
     [SerializeField] private AudioSource audioSource;
-    //[SerializeField] private AudioClip destroySound;
+    private bool attackingOn; // Debug toggle that turns all damage by destrucible objects off;
 
     void Start() {
         anim = GetComponent<Animator>();
         currHealth = maxHealth;
+        attackingOn = true;
     }
 
     void OnTriggerEnter(Collider other) {
@@ -44,9 +45,11 @@ public class Destructible : MonoBehaviour {
             BallStats ballStats = other.GetComponent<BallStats>();
 
             if (currHealth == 0)
-                ballStats.takeDamage(dmgOnDestroy);
+                if(attackingOn)
+                    ballStats.takeDamage(dmgOnDestroy);
             else
-                ballStats.takeDamage(dmgOnHit);
+                if(attackingOn)
+                    ballStats.takeDamage(dmgOnHit);
 
         } else if (other.CompareTag("Wall") || other.CompareTag("Wood")) {
 
