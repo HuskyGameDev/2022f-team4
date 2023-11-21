@@ -6112,7 +6112,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1277605349}
   - component: {fileID: 1277605351}
-  - component: {fileID: 1277605350}
   - component: {fileID: 1277605352}
   m_Layer: 0
   m_Name: Torch Light (1)
@@ -6136,18 +6135,6 @@ Transform:
   m_Father: {fileID: 1384848916}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &1277605350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1277605348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &1277605351
 Light:
   m_ObjectHideFlags: 0
@@ -6618,7 +6605,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1391493231}
   - component: {fileID: 1391493233}
-  - component: {fileID: 1391493232}
   - component: {fileID: 1391493234}
   m_Layer: 0
   m_Name: Torch Light
@@ -6642,18 +6628,6 @@ Transform:
   m_Father: {fileID: 1384848916}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &1391493232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391493230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &1391493233
 Light:
   m_ObjectHideFlags: 0
@@ -9338,7 +9312,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1632523224}
   - component: {fileID: 1632523226}
-  - component: {fileID: 1632523225}
   - component: {fileID: 1632523227}
   m_Layer: 0
   m_Name: Torch Light (2)
@@ -9362,18 +9335,6 @@ Transform:
   m_Father: {fileID: 1384848916}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &1632523225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1632523223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &1632523226
 Light:
   m_ObjectHideFlags: 0

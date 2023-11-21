@@ -415,7 +415,6 @@ GameObject:
   m_Component:
   - component: {fileID: 240030645}
   - component: {fileID: 240030647}
-  - component: {fileID: 240030646}
   - component: {fileID: 240030648}
   m_Layer: 0
   m_Name: Torch Light (3)
@@ -439,18 +438,6 @@ Transform:
   m_Father: {fileID: 1489544988}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -50, y: 0, z: 0}
---- !u!114 &240030646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240030644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &240030647
 Light:
   m_ObjectHideFlags: 0
@@ -853,7 +840,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh287312
+  m_Name: pb_Mesh116162
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3237,7 +3224,6 @@ GameObject:
   m_Component:
   - component: {fileID: 775761542}
   - component: {fileID: 775761544}
-  - component: {fileID: 775761543}
   - component: {fileID: 775761545}
   m_Layer: 0
   m_Name: Torch Light (4)
@@ -3261,18 +3247,6 @@ Transform:
   m_Father: {fileID: 1489544988}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -50, y: 0, z: 0}
---- !u!114 &775761543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775761541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &775761544
 Light:
   m_ObjectHideFlags: 0
@@ -3361,7 +3335,6 @@ GameObject:
   m_Component:
   - component: {fileID: 776194223}
   - component: {fileID: 776194225}
-  - component: {fileID: 776194224}
   - component: {fileID: 776194226}
   m_Layer: 0
   m_Name: Torch Light (2)
@@ -3385,18 +3358,6 @@ Transform:
   m_Father: {fileID: 1489544988}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
---- !u!114 &776194224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 776194222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &776194225
 Light:
   m_ObjectHideFlags: 0
@@ -6182,7 +6143,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1273234630}
   - component: {fileID: 1273234632}
-  - component: {fileID: 1273234631}
   - component: {fileID: 1273234633}
   m_Layer: 0
   m_Name: Torch Light (1)
@@ -6206,18 +6166,6 @@ Transform:
   m_Father: {fileID: 1489544988}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
---- !u!114 &1273234631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273234629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &1273234632
 Light:
   m_ObjectHideFlags: 0
