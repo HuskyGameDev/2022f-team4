@@ -17,7 +17,9 @@ public class Destructible : MonoBehaviour {
     private Animator anim;
 
     private int currHealth;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField]private AudioSource audioSource;
+    [SerializeField]private AudioClip destroySound;
+
     private bool attackingOn; // Debug toggle that turns all damage by destrucible objects off;
 
     void Start() {
@@ -62,14 +64,14 @@ public class Destructible : MonoBehaviour {
             if(audioSource != null){
                 transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<Collider>().enabled = false;
-                //audioSource.clip = destroySound;
-                Debug.Log("Play Destructable Death SFX");
+                audioSource.clip = destroySound;
                 audioSource.Play();
-                Debug.Log("Sound should have played");
-                Destroy(gameObject, 1.0f);
+                // anim.SetTrigger("Break");                                       //Needs to be fixed; will be used to trigger the breaking / death animation
+                Destroy(gameObject, destroySound.length);
+            } else {
+                // anim.SetTrigger("Break");                                       //Needs to be fixed; will be used to trigger the breaking / death animation
+                Destroy(gameObject); 
             }
-            // anim.SetTrigger("Break");                                       //Needs to be fixed; will be used to trigger the breaking / death animation
-            Destroy(gameObject);
         }
     }
 
