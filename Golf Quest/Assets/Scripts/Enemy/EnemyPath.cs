@@ -21,8 +21,8 @@ public class EnemyPath : MonoBehaviour
         // Sort children
         _pathNodes = GetComponentsInChildren<EnemyPathNode>();
         Array.Sort(_pathNodes, new PathNodeComparer());
-        Debug.Log(_pathNodes[0].order);
-        Debug.Log(_pathNodes[1].order);
+        //Debug.Log(_pathNodes[0].order);
+        //Debug.Log(_pathNodes[1].order);
     }
 
     public EnemyPathNode getNextNode(EnemyPathNode reachedNode)
