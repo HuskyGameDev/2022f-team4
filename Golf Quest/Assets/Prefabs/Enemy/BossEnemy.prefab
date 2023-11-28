@@ -63,14 +63,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f43d5ceaee61e4984d629fa940fcce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnStartAttack: 1
+  turnStartAttack: 0
   turnEndAttack: 0
-  anyTimeAttack: 0
-  attackCooldown: 0.2
-  attackNeedsLOS: 0
-  attackNeedsFOV: 0
-  fov: 0
-  maxTurnAttacks: 5
+  anyTimeAttack: 1
+  attackCooldown: 0.1
+  attackNeedsLOS: 1
+  attackNeedsFOV: 1
+  fov: 40
+  maxTurnAttacks: -1
 --- !u!114 &-7019665279661344061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpeed: 2
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 3047851593086349714, guid: 6844f9273cd0f6648b06096125df26e2, type: 3}
 --- !u!114 &-5879346338956203950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ MeshCollider:
   m_GameObject: {fileID: 2767676328368772493}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30

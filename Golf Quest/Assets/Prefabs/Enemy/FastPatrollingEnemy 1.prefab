@@ -341,6 +341,7 @@ MonoBehaviour:
   dmgOnWallHit: 0
   dmgOnHit: 0
   dmgOnDestroy: 0
+  audioSource: {fileID: 6664915746634299748}
   destroySound: {fileID: 8300000, guid: 697dda1e532006a4f927261bc72e8fa4, type: 3}
 --- !u!82 &6664915746634299748
 AudioSource:
@@ -351,9 +352,9 @@ AudioSource:
   m_GameObject: {fileID: 6197577093066319681}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: -6682194920671173815, guid: b367cd1a01fc2114fa58672932d9425c, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 697dda1e532006a4f927261bc72e8fa4, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

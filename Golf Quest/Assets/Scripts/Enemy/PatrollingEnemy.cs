@@ -5,18 +5,23 @@ using UnityEngine.AI;
 
 public class PatrollingEnemy : MonoBehaviour
 {
-    public EnemyPath enemyPath;
+    public EnemyPath enemyPath1;
+    public EnemyPath bossOnlyPath2;
+    private EnemyPath enemyPath;
     public int startNode;
     public float reachNodeDistance;
     public float nodeWaitTime;
     public bool stopWhenTargettingPlayer;
+    [SerializeField] public int bossMovesWhenEnemiesRemaining; // enemies left for boss to move to his new path
     
     private EnemyPathNode _targetNode;
     private NavMeshAgent _navMeshAgent;
     private Enemy _enemy;
     private RotatingEnemy _rotatingEnemy;
     private float _navMeshAgentSpeed;   // Speed of navMeshAgent set in inspector. Used to restore after stopping to attack
-
+    private bool isBoss;
+    private int bossPath;
+    private GameObject[] allEnemies;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +32,14 @@ public class PatrollingEnemy : MonoBehaviour
 
         _navMeshAgentSpeed = _navMeshAgent.speed;
         _navMeshAgent.angularSpeed = _rotatingEnemy.degreesPerSecond;
+        enemyPath = enemyPath1;
         setTargetNode(enemyPath.getNode(startNode));
+        
+        if(bossOnlyPath2 != null) {
+            isBoss = true;
+            allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            bossPath = 1;
+        }
     }
 
     // Update is called once per frame
@@ -47,6 +59,17 @@ public class PatrollingEnemy : MonoBehaviour
         {
             _navMeshAgent.speed = _navMeshAgentSpeed;
         }
+
+        if(isBoss) {
+            allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            // If the boss has not switched paths, see if enough enemies have been killed to switch
+            if(bossPath != 2 && allEnemies.Length <= bossMovesWhenEnemiesRemaining ) {
+               enemyPath = bossOnlyPath2;
+               bossPath = 2;
+            }
+        }
+        
     }
     public IEnumerator WaitAtNode()
     {

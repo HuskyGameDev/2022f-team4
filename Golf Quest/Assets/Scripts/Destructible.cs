@@ -17,13 +17,15 @@ public class Destructible : MonoBehaviour {
     private Animator anim;
 
     private int currHealth;
-    private AudioSource audioSource;
-    [SerializeField] AudioClip destroySound;
+    [SerializeField]private AudioSource audioSource;
+    [SerializeField]private AudioClip destroySound;
+
+    private bool attackingOn; // Debug toggle that turns all damage by destrucible objects off;
 
     void Start() {
         anim = GetComponent<Animator>();
         currHealth = maxHealth;
-        audioSource = GetComponent<AudioSource>();
+        attackingOn = true;
     }
 
     void OnTriggerEnter(Collider other) {
@@ -45,9 +47,11 @@ public class Destructible : MonoBehaviour {
             BallStats ballStats = other.GetComponent<BallStats>();
 
             if (currHealth == 0)
-                ballStats.takeDamage(dmgOnDestroy);
+                if(attackingOn)
+                    ballStats.takeDamage(dmgOnDestroy);
             else
-                ballStats.takeDamage(dmgOnHit);
+                if(attackingOn)
+                    ballStats.takeDamage(dmgOnHit);
 
         } else if (other.CompareTag("Wall") || other.CompareTag("Wood")) {
 
@@ -58,15 +62,16 @@ public class Destructible : MonoBehaviour {
             
             // Play destruction animation
             if(audioSource != null){
-                //Debug.Log("Play Destructable Death SFX");
                 transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<Collider>().enabled = false;
                 audioSource.clip = destroySound;
                 audioSource.Play();
+                // anim.SetTrigger("Break");                                       //Needs to be fixed; will be used to trigger the breaking / death animation
                 Destroy(gameObject, destroySound.length);
+            } else {
+                // anim.SetTrigger("Break");                                       //Needs to be fixed; will be used to trigger the breaking / death animation
+                Destroy(gameObject); 
             }
-            // anim.SetTrigger("Break");                                       //Needs to be fixed; will be used to trigger the breaking / death animation
-            Destroy(gameObject);
         }
     }
 

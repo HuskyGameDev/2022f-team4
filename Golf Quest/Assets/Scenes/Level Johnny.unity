@@ -4349,7 +4349,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1470802073}
   - component: {fileID: 1470802076}
-  - component: {fileID: 1470802075}
   - component: {fileID: 1470802074}
   m_Layer: 0
   m_Name: Torch Light
@@ -4389,18 +4388,6 @@ MonoBehaviour:
   minIntensity: 1.5
   maxIntensity: 3
   smoothing: 15
---- !u!114 &1470802075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1470802072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &1470802076
 Light:
   m_ObjectHideFlags: 0
@@ -4473,7 +4460,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1476855745}
   - component: {fileID: 1476855748}
-  - component: {fileID: 1476855747}
   - component: {fileID: 1476855746}
   m_Layer: 0
   m_Name: Torch Light (4)
@@ -4513,18 +4499,6 @@ MonoBehaviour:
   minIntensity: 1.5
   maxIntensity: 3
   smoothing: 15
---- !u!114 &1476855747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476855744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &1476855748
 Light:
   m_ObjectHideFlags: 0
@@ -7571,7 +7545,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1670366450}
   - component: {fileID: 1670366453}
-  - component: {fileID: 1670366452}
   - component: {fileID: 1670366451}
   m_Layer: 0
   m_Name: Torch Light (2)
@@ -7611,18 +7584,6 @@ MonoBehaviour:
   minIntensity: 1.5
   maxIntensity: 3
   smoothing: 15
---- !u!114 &1670366452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670366449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &1670366453
 Light:
   m_ObjectHideFlags: 0
@@ -9333,7 +9294,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1881115119}
   - component: {fileID: 1881115122}
-  - component: {fileID: 1881115121}
   - component: {fileID: 1881115120}
   m_Layer: 0
   m_Name: Torch Light (1)
@@ -9373,18 +9333,6 @@ MonoBehaviour:
   minIntensity: 1.5
   maxIntensity: 3
   smoothing: 15
---- !u!114 &1881115121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1881115118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &1881115122
 Light:
   m_ObjectHideFlags: 0
@@ -10938,7 +10886,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2095611204}
   - component: {fileID: 2095611207}
-  - component: {fileID: 2095611206}
   - component: {fileID: 2095611205}
   m_Layer: 0
   m_Name: Torch Light (3)
@@ -10978,18 +10925,6 @@ MonoBehaviour:
   minIntensity: 1.5
   maxIntensity: 3
   smoothing: 15
---- !u!114 &2095611206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095611203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767f93a667fe15e4b916d609ea1d7e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &2095611207
 Light:
   m_ObjectHideFlags: 0
