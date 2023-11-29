@@ -12,7 +12,7 @@ public class PatrollingEnemy : MonoBehaviour
     public float reachNodeDistance;
     public float nodeWaitTime;
     public bool stopWhenTargettingPlayer;
-    [SerializeField] public int bossMovesWhenEnemiesRemaining; // enemies left for boss to move to his new path
+    [SerializeField] public int bossMovesWhenHealthRemaining; // Health left for boss to move to his new path
     
     private EnemyPathNode _targetNode;
     private NavMeshAgent _navMeshAgent;
@@ -21,7 +21,7 @@ public class PatrollingEnemy : MonoBehaviour
     private float _navMeshAgentSpeed;   // Speed of navMeshAgent set in inspector. Used to restore after stopping to attack
     private bool isBoss;
     private int bossPath;
-    private GameObject[] allEnemies;
+    private Destructible destructible;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +37,7 @@ public class PatrollingEnemy : MonoBehaviour
         
         if(bossOnlyPath2 != null) {
             isBoss = true;
-            allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            destructible = GetComponent<Destructible>();
             bossPath = 1;
         }
     }
@@ -61,11 +61,14 @@ public class PatrollingEnemy : MonoBehaviour
         }
 
         if(isBoss) {
-            allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-            // If the boss has not switched paths, see if enough enemies have been killed to switch
-            if(bossPath != 2 && allEnemies.Length <= bossMovesWhenEnemiesRemaining ) {
+            // If the boss has not switched paths, see if enough damage has been taken to switch
+            if(bossPath != 2 && destructible.getCurrHealth() <= bossMovesWhenHealthRemaining ) {
                enemyPath = bossOnlyPath2;
+
+               // Immediatly head to the new node
+               setTargetNode(enemyPath.getNodeZero()); 
+               _navMeshAgent.SetDestination(_targetNode.transform.position); 
+               
                bossPath = 2;
             }
         }

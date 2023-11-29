@@ -25,6 +25,10 @@ public class EnemyPath : MonoBehaviour
         //Debug.Log(_pathNodes[1].order);
     }
 
+    public EnemyPathNode getNodeZero()
+    {
+        return _pathNodes[0];
+    }
     public EnemyPathNode getNextNode(EnemyPathNode reachedNode)
     {
         return _pathNodes[(reachedNode.order + 1) % _pathNodes.Length];
