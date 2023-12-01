@@ -640,7 +640,7 @@ MonoBehaviour:
   readySprite: {fileID: 1460803018}
   uiAudioSource: {fileID: 8733833703900187984}
   launchSound: {fileID: 8300000, guid: dcec707d34bab1543b311061f9bbccc3, type: 3}
-  chargeSound: {fileID: 8300000, guid: b6896ac346d495b46b7be8d9fdde96bd, type: 3}
+  chargeSound: {fileID: 8300000, guid: 583a551145c8f91448538bdf0969a420, type: 3}
 --- !u!114 &6447282347769975651
 MonoBehaviour:
   m_ObjectHideFlags: 0

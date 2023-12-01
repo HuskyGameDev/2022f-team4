@@ -10,12 +10,24 @@ public class SelectionHighlight : MonoBehaviour {
     private EventSystem eventSystem;
     private GameObject currSelection;
     private AudioSource audioSource;
+    private bool firstPlay; // Used to skip the first attempt to play the selction sound
+    
+    //private TitleScreenManager titleScreenManager;
+    private AudioSource neighborAudioSource;
 
     void Start() {
 
+        firstPlay = true;
         eventSystem = GetComponent<EventSystem>();
         currSelection = eventSystem.currentSelectedGameObject;
         audioSource = GetComponent<AudioSource>();
+        GameObject neighborObject = GameObject.Find("Canvas");
+        neighborAudioSource = neighborObject.GetComponent<AudioSource>();
+        if(neighborAudioSource == null){
+            neighborObject = GameObject.Find("PauseMenu");
+            neighborAudioSource = neighborObject.GetComponent<AudioSource>(); 
+        }
+        //titleScreenManager = GetComponent<TitleScreenManager>();
         enable(currSelection);
     }
 
@@ -48,7 +60,11 @@ public class SelectionHighlight : MonoBehaviour {
             return;
 
         Outline outline = selection.GetComponent<Outline>();
-        audioSource.Play();
+        //if(!firstPlay && !titleScreenManager.IsButtonSoundPlaying())
+        if(!firstPlay && !neighborAudioSource.isPlaying)
+            audioSource.Play();
+        else 
+            firstPlay = false;
 
         if(outline == null)
             return;
