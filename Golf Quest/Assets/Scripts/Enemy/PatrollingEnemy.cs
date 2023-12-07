@@ -16,6 +16,7 @@ public class PatrollingEnemy : MonoBehaviour
     
     private EnemyPathNode _targetNode;
     private NavMeshAgent _navMeshAgent;
+    private Collider _collider;
     private Enemy _enemy;
     private RotatingEnemy _rotatingEnemy;
     private float _navMeshAgentSpeed;   // Speed of navMeshAgent set in inspector. Used to restore after stopping to attack
@@ -29,6 +30,7 @@ public class PatrollingEnemy : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _enemy = GetComponent<Enemy>();
         _rotatingEnemy = GetComponent<RotatingEnemy>();
+        _collider = GetComponent<Collider>();
 
         _navMeshAgentSpeed = _navMeshAgent.speed;
         _navMeshAgent.angularSpeed = _rotatingEnemy.degreesPerSecond;
@@ -49,6 +51,7 @@ public class PatrollingEnemy : MonoBehaviour
         if (distToTarget <= reachNodeDistance)
         {
             setTargetNode(enemyPath.getNextNode(_targetNode));
+            _collider.enabled = true;
         }
 
         if (stopWhenTargettingPlayer && _rotatingEnemy.canTargetPlayer())
@@ -65,6 +68,7 @@ public class PatrollingEnemy : MonoBehaviour
             if(bossPath != 2 && destructible.getCurrHealth() <= bossMovesWhenHealthRemaining ) {
                enemyPath = bossOnlyPath2;
 
+               _collider.enabled = false;
                // Immediatly head to the new node
                setTargetNode(enemyPath.getNodeZero()); 
                _navMeshAgent.SetDestination(_targetNode.transform.position); 
