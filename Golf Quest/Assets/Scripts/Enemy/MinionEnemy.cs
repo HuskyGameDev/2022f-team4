@@ -1,4 +1,4 @@
-/*
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +15,7 @@ public class MinionEnemy : MonoBehaviour
     void Start()
     {
         TeleportLocation = new Vector3(TeleportToX, 0, TeleportToZ);
-        bossDestructable = Instantiate(GameObject.Find("Destructable"));
+        bossDestructable = bossPrefab.GetComponent<Destructible>();
     }
 
     // Update is called once per frame
@@ -26,4 +26,3 @@ public class MinionEnemy : MonoBehaviour
         }
     }
 }
-*/
