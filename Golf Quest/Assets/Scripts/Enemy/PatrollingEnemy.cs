@@ -23,6 +23,7 @@ public class PatrollingEnemy : MonoBehaviour
     private bool isBoss;
     private int bossPath;
     private Destructible destructible;
+    public int transitTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +52,6 @@ public class PatrollingEnemy : MonoBehaviour
         if (distToTarget <= reachNodeDistance)
         {
             setTargetNode(enemyPath.getNextNode(_targetNode));
-            _collider.enabled = true;
         }
 
         if (stopWhenTargettingPlayer && _rotatingEnemy.canTargetPlayer())
@@ -61,6 +61,15 @@ public class PatrollingEnemy : MonoBehaviour
         else if (_navMeshAgent.speed == 0)
         {
             _navMeshAgent.speed = _navMeshAgentSpeed;
+        }
+
+        if(_collider.enabled == false){
+            if(transitTimer==0){
+                _collider.enabled = true;
+            }
+            else{
+                transitTimer--;
+            }
         }
 
         if(isBoss) {
