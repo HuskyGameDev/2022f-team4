@@ -53,7 +53,7 @@ public class ExitHoleManager : MonoBehaviour {
         if(!isOpen())
             return;
 
-        success.Play();    
+        success.Play();
 
         levelCompletedManager.LevelCompleted();
     }
